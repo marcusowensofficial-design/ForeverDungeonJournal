@@ -91,4 +91,9 @@ FDJ.Locales.ptBR = {
     ["MAP_OPEN_FAILED"] = "Não foi possível abrir o local salvo no mapa.",
     ["QUEST_GIVER"] = "Início da missão",
     ["QUEST_STARTS_HERE"] = "A missão começa aqui",
+
+    ["ALL_SLOTS"] = "Todos os compartimentos",
+    ["ALL_CLASSES"] = "Todas as classes",
+    ["MY_WISHLIST"] = "Minha lista de desejos",
+    ["WISHLIST"] = "Lista de desejos",
 }

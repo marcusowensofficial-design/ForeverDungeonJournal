@@ -116,7 +116,9 @@ FDJ.DB = {
             },
             {
                 name = "Magmatus",
+                npcID = 255301,
                 displayID = 8243,
+                customIcon = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\MagmatusPortrait.tga",
                 -- The client encounter table currently calls this encounter Infurnus.
                 aliases = { "Magmatus", "Infurnus" },
                 loot = {
@@ -1852,6 +1854,7 @@ FDJ.DB["City of Dalaran"] = {
         {
             name = "Mana Elemental",
             aliases = {"Mana Elemental"},
+            customIcon = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\ManaElementalPortrait.tga",
             loot = {},
         },
         {

@@ -94,4 +94,9 @@ FDJ.Locales.koKR = {
     ["MAP_OPEN_FAILED"] = "기록된 지도 위치를 열 수 없습니다.",
     ["QUEST_GIVER"] = "퀘스트 제공자",
     ["QUEST_STARTS_HERE"] = "퀘스트 시작 위치",
+
+    ["ALL_SLOTS"] = "모든 슬롯",
+    ["ALL_CLASSES"] = "모든 직업",
+    ["MY_WISHLIST"] = "내 위시리스트",
+    ["WISHLIST"] = "위시리스트",
 }

@@ -91,5 +91,9 @@ FDJ.Locales.esES = {
     ["MAP_OPEN_FAILED"] = "No se pudo abrir la ubicación guardada.",
     ["QUEST_GIVER"] = "Asignador de misión",
     ["QUEST_STARTS_HERE"] = "La misión comienza aquí",
+    ["ALL_SLOTS"] = "Todas las casillas",
+    ["ALL_CLASSES"] = "Todas las clases",
+    ["MY_WISHLIST"] = "Mi lista de deseos",
+    ["WISHLIST"] = "Lista de deseos",
 }
 FDJ.Locales.esMX = FDJ.Locales.esES

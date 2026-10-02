@@ -105,6 +105,10 @@ FDJ.Locales.enUS = {
     DUNGEON_MAP = "Dungeon Map",
     SHOW_ENTRANCE_ON_MAP = "Show Entrance on Map",
     ENTRANCE_TOOLTIP_DESC = "Marks the physical dungeon entrance portal on your world map.",
+    ALL_SLOTS = "All Slots",
+    ALL_CLASSES = "All Classes",
+    MY_WISHLIST = "My Wishlist",
+    WISHLIST = "Wishlist",
 }
 
 FDJ.Locales.deDE = {
@@ -194,6 +198,10 @@ FDJ.Locales.deDE = {
     MAP_OPEN_FAILED = "Der gespeicherte Kartenort konnte nicht geöffnet werden.",
     QUEST_GIVER = "Questgeber",
     QUEST_STARTS_HERE = "Quest startet hier",
+    ALL_SLOTS = "Alle Plätze",
+    ALL_CLASSES = "Alle Klassen",
+    MY_WISHLIST = "Meine Wunschliste",
+    WISHLIST = "Wunschliste",
 }
 
 local function NormalizeLanguage(value)

@@ -1639,10 +1639,10 @@ local function SetBossPortrait(texture, dungeonName, boss)
     end
 
     -- 1) Explicit bundled portrait art. Used only when we have a verified clean
-    -- asset (currently Lordaeron Captain). Put this before journal/model lookup so
+    -- asset (Lordaeron Captain, Magmatus, Mana Elemental). Put this before journal/model lookup so
     -- a bad or missing Forever display never overrides the intended portrait.
-    if boss.customIcon then
-        texture:SetTexture(boss.customIcon)
+    if boss.customIcon or boss.icon then
+        texture:SetTexture(boss.customIcon or boss.icon)
         texture:SetTexCoord(0, 1, 0, 1)
         return true
     end
@@ -2422,7 +2422,8 @@ FDJ.CLASS_DISPLAY_INFO = {
 
 function FDJ.GetClassDisplay(token)
     if not token or token == "ALL" then
-        local locAll = (L and L("ALL_CLASSES")) or "All Classes"
+        local locAll = (L and L("ALL_CLASSES"))
+        if not locAll or locAll == "ALL_CLASSES" then locAll = "All Classes" end
         return locAll, 1.0, 0.82, 0.27
     end
     local info = FDJ.CLASS_DISPLAY_INFO[token]
@@ -6800,12 +6801,17 @@ RefreshAll = function()
         frame.dungeonLocationButton:SetShown(hasEntrance)
         frame.dungeonLocationButton:ClearAllPoints()
         frame.dungeonLocationButton:SetPoint("LEFT", frame.dungeonMeta, "RIGHT", 14, 0)
-        frame.dungeonLocationButton:SetText(L("SHOW_ENTRANCE_ON_MAP") or "Show Entrance on Map")
+        local btnLabel = L("SHOW_ENTRANCE_ON_MAP")
+        if not btnLabel or btnLabel == "SHOW_ENTRANCE_ON_MAP" then btnLabel = "Show Entrance on Map" end
+        frame.dungeonLocationButton:SetText(btnLabel)
         local btnText = frame.dungeonLocationButton:GetFontString()
         if btnText and frame.dungeonLocationButton.icon then
+            btnText:SetWordWrap(false)
+            local strW = btnText:GetStringWidth() or 130
+            frame.dungeonLocationButton:SetWidth(math.max(196, math.floor(strW + 36)))
             btnText:ClearAllPoints()
             btnText:SetPoint("LEFT", frame.dungeonLocationButton.icon, "RIGHT", 5, 0)
-            btnText:SetPoint("RIGHT", frame.dungeonLocationButton, "RIGHT", -6, 0)
+            btnText:SetPoint("RIGHT", frame.dungeonLocationButton, "RIGHT", -8, 0)
             btnText:SetJustifyH("CENTER")
             btnText:SetTextColor(1.00, 0.82, 0.27)
         end
@@ -7776,7 +7782,9 @@ local function CreateMainFrame()
     end)
     homeWishlistButton:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(L("MY_WISHLIST") or "My Wishlist", 1, 0.82, 0)
+        local myWish = L("MY_WISHLIST")
+        if not myWish or myWish == "MY_WISHLIST" then myWish = "My Wishlist" end
+        GameTooltip:SetText(myWish, 1, 0.82, 0)
         GameTooltip:AddLine("View all your star-marked wishlist items across all dungeons.", 0.9, 0.9, 0.9, true)
         GameTooltip:Show()
     end)
@@ -7991,7 +7999,9 @@ local function CreateMainFrame()
         local items = FDJ.GetWishlistItems and FDJ.GetWishlistItems() or {}
         local count = #items
         local starTex = FDJ.WISHLIST_STAR_TEXTURE or "★ "
-        local txt = starTex .. (L("MY_WISHLIST") or "My Wishlist")
+        local myWish = L("MY_WISHLIST")
+        if not myWish or myWish == "MY_WISHLIST" then myWish = "My Wishlist" end
+        local txt = starTex .. myWish
         if count > 0 then
             txt = txt .. " (" .. count .. ")"
         end
@@ -8014,7 +8024,9 @@ local function CreateMainFrame()
     local wTitle = wPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     wTitle:SetPoint("TOPLEFT", 22, -16)
     local starTex = FDJ.WISHLIST_STAR_TEXTURE or "★ "
-    wTitle:SetText(starTex .. (L("MY_WISHLIST") or "My Wishlist"))
+    local myWish = L("MY_WISHLIST")
+    if not myWish or myWish == "MY_WISHLIST" then myWish = "My Wishlist" end
+    wTitle:SetText(starTex .. myWish)
     wTitle:SetTextColor(1.0, 0.82, 0.25)
 
     local wSub = wPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -8159,20 +8171,25 @@ local function CreateMainFrame()
     frame.dungeonMeta:SetTextColor(0.88, 0.80, 0.66)
 
     frame.dungeonLocationButton = CreateFrame("Button", nil, header, "UIPanelButtonTemplate")
-    frame.dungeonLocationButton:SetSize(176, 22)
+    frame.dungeonLocationButton:SetSize(196, 22)
     frame.dungeonLocationButton:SetPoint("LEFT", frame.dungeonMeta, "RIGHT", 14, 0)
     frame.dungeonLocationButton:SetFrameLevel(header:GetFrameLevel() + 4)
     frame.dungeonLocationButton.icon = frame.dungeonLocationButton:CreateTexture(nil, "OVERLAY")
-    frame.dungeonLocationButton.icon:SetSize(18, 18)
+    frame.dungeonLocationButton.icon:SetSize(16, 16)
     frame.dungeonLocationButton.icon:SetPoint("LEFT", 6, 0)
     frame.dungeonLocationButton.icon:SetTexture("Interface\\AddOns\\ForeverDungeonJournal\\Media\\MapTabIcon")
     frame.dungeonLocationButton.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-    frame.dungeonLocationButton:SetText(L("SHOW_ENTRANCE_ON_MAP") or "Show Entrance on Map")
+    local btnInitLabel = L("SHOW_ENTRANCE_ON_MAP")
+    if not btnInitLabel or btnInitLabel == "SHOW_ENTRANCE_ON_MAP" then btnInitLabel = "Show Entrance on Map" end
+    frame.dungeonLocationButton:SetText(btnInitLabel)
     frame.dungeonLocationButton.text = frame.dungeonLocationButton:GetFontString()
     if frame.dungeonLocationButton.text then
+        frame.dungeonLocationButton.text:SetWordWrap(false)
+        local strW = frame.dungeonLocationButton.text:GetStringWidth() or 130
+        frame.dungeonLocationButton:SetWidth(math.max(196, math.floor(strW + 36)))
         frame.dungeonLocationButton.text:ClearAllPoints()
         frame.dungeonLocationButton.text:SetPoint("LEFT", frame.dungeonLocationButton.icon, "RIGHT", 5, 0)
-        frame.dungeonLocationButton.text:SetPoint("RIGHT", frame.dungeonLocationButton, "RIGHT", -6, 0)
+        frame.dungeonLocationButton.text:SetPoint("RIGHT", frame.dungeonLocationButton, "RIGHT", -8, 0)
         frame.dungeonLocationButton.text:SetJustifyH("CENTER")
         frame.dungeonLocationButton.text:SetTextColor(1.00, 0.82, 0.27)
         frame.dungeonLocationButton.text:SetFontObject("GameFontHighlightSmall")
@@ -8519,7 +8536,9 @@ local function CreateMainFrame()
     lootSlotFilterButton:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
     local slotFilterText = lootSlotFilterButton:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     slotFilterText:SetPoint("CENTER")
-    slotFilterText:SetText(L("ALL_SLOTS") or "All Slots")
+    local slotDefText = L("ALL_SLOTS")
+    if not slotDefText or slotDefText == "ALL_SLOTS" then slotDefText = "All Slots" end
+    slotFilterText:SetText(slotDefText)
     slotFilterText:SetTextColor(1.0, 0.82, 0.27)
     lootSlotFilterButton.text = slotFilterText
 
@@ -8534,9 +8553,13 @@ local function CreateMainFrame()
     slotMenu:SetBackdropBorderColor(0.48, 0.36, 0.18, 1)
     slotMenu:Hide()
 
+    local allSlotsLabel = L("ALL_SLOTS")
+    if not allSlotsLabel or allSlotsLabel == "ALL_SLOTS" then allSlotsLabel = "All Slots" end
+    local wishLabel = L("WISHLIST")
+    if not wishLabel or wishLabel == "WISHLIST" then wishLabel = "Wishlist" end
     local slotChoices = {
-        { id = "ALL", label = L("ALL_SLOTS") or "All Slots" },
-        { id = "WISHLIST", label = "|cffffd100★|r " .. (L("WISHLIST") or "Wishlist") },
+        { id = "ALL", label = allSlotsLabel },
+        { id = "WISHLIST", label = "|cffffd100★|r " .. wishLabel },
         { id = "WEAPONS", label = L("WEAPONS") or "Weapons" },
         { id = "ARMOR", label = L("ARMOR") or "Armor" },
         { id = "ACCESSORIES", label = L("ACCESSORIES") or "Accessories" },
@@ -8658,9 +8681,9 @@ local function CreateMainFrame()
         end
         if tactics.roleTips then
             local roleParts = {}
-            if tactics.roleTips.tank then table.insert(roleParts, "T: " .. tactics.roleTips.tank) end
-            if tactics.roleTips.healer then table.insert(roleParts, "H: " .. tactics.roleTips.healer) end
-            if tactics.roleTips.dps then table.insert(roleParts, "DPS: " .. tactics.roleTips.dps) end
+            if tactics.roleTips.tank then table.insert(roleParts, "T: " .. tactics.roleTips.tank:gsub("\n", " ")) end
+            if tactics.roleTips.healer then table.insert(roleParts, "H: " .. tactics.roleTips.healer:gsub("\n", " ")) end
+            if tactics.roleTips.dps then table.insert(roleParts, "DPS: " .. tactics.roleTips.dps:gsub("\n", " ")) end
             local roleLine = table.concat(roleParts, " | ")
             roleLine = roleLine:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|H.-|h(%[.-%])|h", "%1")
             if #roleLine > 240 then roleLine = roleLine:sub(1, 237) .. "..." end

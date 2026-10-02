@@ -91,4 +91,9 @@ FDJ.Locales.itIT = {
     ["MAP_OPEN_FAILED"] = "Impossibile aprire la posizione salvata.",
     ["QUEST_GIVER"] = "PNG della missione",
     ["QUEST_STARTS_HERE"] = "La missione inizia qui",
+
+    ["ALL_SLOTS"] = "Tutti gli scomparti",
+    ["ALL_CLASSES"] = "Tutte le classi",
+    ["MY_WISHLIST"] = "La mia lista dei desideri",
+    ["WISHLIST"] = "Lista dei desideri",
 }

@@ -12,6 +12,10 @@ FDJ.BOSS_LEVELS = {
         ["Arcane Anomaly"] = "30",
         ["Unstable Sentinel"] = "31",
         ["Fel Ancient"] = "32",
+        ["Mana Wraith"] = "31",
+        ["Mana Devourer"] = "31",
+        ["Mana Elemental"] = "32",
+        ["Lyn the Ignored"] = "33",
         ["Shade of the Archmage"] = "33",
     },
     ["Gnomeregan"] = {

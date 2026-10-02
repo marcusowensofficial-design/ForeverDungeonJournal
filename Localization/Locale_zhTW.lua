@@ -94,4 +94,9 @@ FDJ.Locales.zhTW = {
     ["MAP_OPEN_FAILED"] = "無法開啟記錄的地圖位置。",
     ["QUEST_GIVER"] = "任務釋出者",
     ["QUEST_STARTS_HERE"] = "任務從這裡開始",
+
+    ["ALL_SLOTS"] = "所有部位",
+    ["ALL_CLASSES"] = "所有職業",
+    ["MY_WISHLIST"] = "我的心願清單",
+    ["WISHLIST"] = "心願清單",
 }

@@ -91,4 +91,9 @@ FDJ.Locales.frFR = {
     ["MAP_OPEN_FAILED"] = "Impossible d’ouvrir l’emplacement enregistré.",
     ["QUEST_GIVER"] = "Donneur de quête",
     ["QUEST_STARTS_HERE"] = "La quête commence ici",
+
+    ["ALL_SLOTS"] = "Tous les emplacements",
+    ["ALL_CLASSES"] = "Toutes les classes",
+    ["MY_WISHLIST"] = "Ma liste de souhaits",
+    ["WISHLIST"] = "Liste de souhaits",
 }

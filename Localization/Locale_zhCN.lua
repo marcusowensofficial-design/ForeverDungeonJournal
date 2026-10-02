@@ -94,4 +94,9 @@ FDJ.Locales.zhCN = {
     ["MAP_OPEN_FAILED"] = "无法打开记录的地图位置。",
     ["QUEST_GIVER"] = "任务发布者",
     ["QUEST_STARTS_HERE"] = "任务从这里开始",
+
+    ["ALL_SLOTS"] = "所有部位",
+    ["ALL_CLASSES"] = "所有职业",
+    ["MY_WISHLIST"] = "我的心愿单",
+    ["WISHLIST"] = "心愿单",
 }
