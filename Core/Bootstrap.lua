@@ -10,6 +10,7 @@ FDJ.ADDON_NAME = ADDON_NAME
 FDJ.Constants = FDJ.Constants or {}
 FDJ.Constants.ALBA_FAIRMOON_LOCATION = "Alba Fairmoon, Sentinel Hill inn, Westfall"
 FDJ.WISHLIST_STAR_TEXTURE = "|TInterface\\AddOns\\ForeverDungeonJournal\\Media\\Star_Gold.tga:13:13:0:-1|t "
+FDJ.DUNGEON_MAPS = FDJ.DUNGEON_MAPS or {}
 
 ForeverDungeonJournalDB = ForeverDungeonJournalDB or {}
 
@@ -142,14 +143,28 @@ end
 -- ============================================================
 -- LOOT WISHLIST & CHASE ITEM TRACKER (Per-Character DB)
 -- ============================================================
-function FDJ.GetCharKey()
-    if UnitName then
-        local name = UnitName("player")
-        if name and name ~= "" then
-            return Ambiguate and Ambiguate(name, "none") or name
+function FDJ.GetMakeshiftRealmName()
+    if C_GameRules and C_GameRules.IsGameRuleActive then
+        if C_GameRules.IsGameRuleActive(Enum.GameRule.HardcoreRuleset) then
+            return "Hardcore"
+        elseif C_GameRules.IsGameRuleActive(Enum.GameRule.PvPRuleset) then
+            return "PvP"
+        elseif C_GameRules.IsGameRuleActive(Enum.GameRule.RPRuleset) then
+            return "RP"
         end
     end
-    return "Default"
+    local realm = GetRealmName and GetRealmName()
+    return (realm and realm ~= "") and realm or "PvE"
+end
+
+function FDJ.GetCharKey()
+    local name = UnitName and UnitName("player")
+    if name and name ~= "" then
+        name = Ambiguate and Ambiguate(name, "none") or name
+    else
+        name = "Default"
+    end
+    return name .. " - " .. FDJ.GetMakeshiftRealmName()
 end
 
 function FDJ.IsWishlisted(itemID)
@@ -217,6 +232,123 @@ function FDJ.GetWishlistItems()
     end
     return results
 end
+
+-- ============================================================
+-- GLOBAL ITEM LOOKUP & TOOLTIP PROVIDER
+-- ============================================================
+FDJ.ItemLookup = {}
+
+function FDJ.BuildItemLookup()
+    if not FDJ.DB or not FDJ.ORDER then return end
+    FDJ.ItemLookup = {}
+    for _, dungeonName in ipairs(FDJ.ORDER) do
+        local dung = FDJ.DB[dungeonName]
+        if dung then
+            if dung.bosses then
+                for bIdx, boss in ipairs(dung.bosses) do
+                    if boss.loot then
+                        for _, item in ipairs(boss.loot) do
+                            local itemID = tonumber(item[1])
+                            if itemID and itemID > 0 then
+                                local rawSlot = item[3]
+                                local rawQuality = item[4]
+                                if type(rawSlot) == "number" and type(rawQuality) == "string" then
+                                    rawSlot, rawQuality = rawQuality, rawSlot
+                                end
+                                FDJ.ItemLookup[itemID] = {
+                                    itemID = itemID,
+                                    name = item[2],
+                                    slot = rawSlot,
+                                    quality = rawQuality,
+                                    dungeon = dungeonName,
+                                    boss = boss.name,
+                                    bossIndex = bIdx,
+                                    trash = boss.trash or false,
+                                }
+                            end
+                        end
+                    end
+                end
+            end
+            if dung.quests then
+                for _, q in ipairs(dung.quests) do
+                    if q.rewardItems then
+                        for _, r in ipairs(q.rewardItems) do
+                            local itemID = tonumber(r[1])
+                            if itemID and itemID > 0 and not FDJ.ItemLookup[itemID] then
+                                FDJ.ItemLookup[itemID] = {
+                                    itemID = itemID,
+                                    name = r[2],
+                                    slot = "Quest Reward",
+                                    quality = r[3] or 3,
+                                    dungeon = dungeonName,
+                                    boss = "Quest: " .. (q.name or "Dungeon Quest"),
+                                    isQuest = true,
+                                }
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+local tooltipHooked = false
+function FDJ.InitTooltipHooks()
+    if tooltipHooked then return end
+    tooltipHooked = true
+
+    local function AddFDJTooltipInfo(tooltip, data)
+        if not tooltip or (tooltip.IsForbidden and tooltip:IsForbidden()) then return end
+        local db = ForeverDungeonJournalDB
+        if db and db.showItemTooltips == false then return end
+
+        local itemID = data and data.id
+        if not itemID and tooltip.GetItem then
+            local _, link = tooltip:GetItem()
+            if link then
+                itemID = tonumber(link:match("item:(%d+)"))
+            end
+        end
+        if not itemID or itemID <= 0 then return end
+
+        local info = FDJ.ItemLookup and FDJ.ItemLookup[itemID]
+        local isWish = FDJ.IsWishlisted and FDJ.IsWishlisted(itemID)
+
+        if info then
+            local sourceText
+            if info.isQuest then
+                sourceText = string.format("|cffd8a83cForever DJ:|r |cffffd100%s|r (|cffffffff%s|r)", info.dungeon, info.boss)
+            elseif info.trash then
+                sourceText = string.format("|cffd8a83cForever DJ:|r |cffffd100%s|r (|cffaaaaaaTrash Drop|r)", info.dungeon)
+            else
+                sourceText = string.format("|cffd8a83cForever DJ:|r |cffffd100%s|r - |cffffffff%s|r", info.dungeon, info.boss)
+            end
+            tooltip:AddLine(sourceText)
+        end
+
+        if isWish then
+            tooltip:AddLine("|cffffd100★ On Forever Wishlist|r", 1, 0.82, 0.25)
+        end
+
+        if info or isWish then
+            tooltip:Show()
+        end
+    end
+
+    if TooltipDataProcessor and TooltipDataProcessor.AddTooltipPostCall then
+        TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, AddFDJTooltipInfo)
+    else
+        if GameTooltip then
+            GameTooltip:HookScript("OnTooltipSetItem", function(self) AddFDJTooltipInfo(self) end)
+        end
+        if ItemRefTooltip then
+            ItemRefTooltip:HookScript("OnTooltipSetItem", function(self) AddFDJTooltipInfo(self) end)
+        end
+    end
+end
+
 
 
 -- ============================================================

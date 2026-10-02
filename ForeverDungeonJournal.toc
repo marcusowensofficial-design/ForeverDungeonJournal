@@ -5,6 +5,7 @@
 ## Version: 1.5.0
 ## IconTexture: Interface\Icons\INV_Misc_Book_09
 ## SavedVariables: ForeverDungeonJournalDB
+## LoadSavedVariablesFirst: true
 
 
 Core\Bootstrap.lua

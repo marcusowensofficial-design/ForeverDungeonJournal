@@ -201,6 +201,7 @@ def validate_syntax(filepath):
 
 if __name__ == "__main__":
     files = [
+        "Core/Bootstrap.lua",
         "Core/Journal.lua",
         "Data/BossTactics.lua",
         "Data/Dungeons.lua",

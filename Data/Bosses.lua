@@ -5,6 +5,7 @@ FDJ.BOSS_LEVELS = {
     ["Excavation Site: Wetlands"] = {
         ["Saltspine"] = "28",
         ["Shadetooth"] = "29",
+        ["Highland Horror"] = "30",
         ["Relic Guardian"] = "31",
     },
     ["City of Dalaran"] = {

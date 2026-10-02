@@ -705,6 +705,19 @@ FDJ.BOSS_TACTICS = {
                 { id = 8269, name = "Call of the Dig", icon = "Interface\\Icons\\INV_Misc_Horn_01", desc = "Summons 2 Excavation Trogg miners to swarm the party." },
             },
         },
+        ["Highland Horror"] = {
+            overview = "A colossal bog beast unearthed in the marshy excavation, entangling victims with rooted vines and spewing necrotic spore bursts.",
+            roleTips = {
+                tank = "Face Highland Horror away from the party to avoid cone root sweeps. Taunt quickly after Bog Slam knockbacks.",
+                healer = "Dispel Strangling Roots immediately to prevent stacking Nature damage on affected party members.",
+                dps = "Kill Creeping Tendrils and Spore Pods immediately when summoned before burning the boss.",
+            },
+            abilities = {
+                { id = 339, name = "Strangling Roots", icon = "Interface\\Icons\\Spell_Nature_Stranglevines", desc = "Entangles all enemies in front of the caster, dealing Nature damage every 3 sec and rooting them in place for 9 sec." },
+                { id = 15588, name = "Bog Slam", icon = "Interface\\Icons\\Ability_Smash", desc = "Slams the ground with massive force, inflicting heavy Physical damage and knocking back the current target." },
+                { id = 11989, name = "Fungal Spores", icon = "Interface\\Icons\\Spell_Nature_AbolishPoison", desc = "Spews corrosive fungal spores around the arena, leaving toxic clouds that inflict periodic Nature damage." },
+            },
+        },
         ["Relic Guardian"] = {
             overview = "An animated titan-forged defense construct safeguarding the prime vault chamber. It emits arcane pulse barriers, electrifies the wet cavern floor, and overloads when critically damaged.",
             roleTips = {

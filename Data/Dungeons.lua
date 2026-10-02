@@ -150,6 +150,19 @@ FDJ.DB = {
                     {274286, "Durgen Dirgehammer's Head", "Quest Item", 1},
                 },
             },
+            {
+                -- Royal dwarven tomb and construct trash drops.
+                name = "Trash Drops",
+                trash = true,
+                loot = {
+                    {281319, "Golem War Cloak", "Back, Cloth", 3, "Hall of Thanes trash"},
+                    {281320, "Rune-Etched Ring", "Finger", 3, "Hall of Thanes trash"},
+                    {281321, "Giantstone Medallion", "Neck", 3, "Hall of Thanes trash"},
+                    {281313, "Trusty Sword", "Two-Hand, Sword", 3, "Hall of Thanes trash"},
+                    {281314, "Subdued Dragon's Fang", "One-Hand, Dagger", 3, "Hall of Thanes trash"},
+                    {281312, "Fallen Dragon's Scepter", "Two-Hand, Staff", 3, "Hall of Thanes trash"},
+                },
+            },
         },
     },
 
@@ -663,6 +676,20 @@ FDJ.DB = {
                 rare = true,
                 customIcon = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\LordaeronCaptainPortrait.tga",
             },
+            {
+                -- Scourge trash and Rotmender's set drops.
+                name = "Trash Drops",
+                trash = true,
+                loot = {
+                    {286978, "Rotmender's Garb", "Chest, Cloth", 3, "Ruins of Lordaeron trash"},
+                    {286979, "Rotmender's Gloves", "Hands, Cloth", 3, "Ruins of Lordaeron trash"},
+                    {286980, "Rotmender's Sash", "Waist, Cloth", 3, "Ruins of Lordaeron trash"},
+                    {286977, "Sword of the Fallen", "Two-Hand, Sword", 3, "Ruins of Lordaeron trash"},
+                    {286981, "Death Bindings", "Wrist, Mail", 3, "Ruins of Lordaeron trash"},
+                    {276631, "Coldflame Saber", "Main Hand, Sword", 3, "Ruins of Lordaeron trash"},
+                    {286535, "Sludge-Stained Band", "Finger", 2, "Ruins of Lordaeron trash"},
+                },
+            },
         },
     },
 }
@@ -816,7 +843,7 @@ DB["The Deadmines"] = {
         }, {
             name = "Cookie",
             aliases = {"Cookie"},
-            loot = {{5198, "Cookie's Stirring Rod", "Ranged, Wand", 3}, {5197, "Cookie's Tenderizer", "One-Hand, Mace", 3}, {273298, "Lookie's Spyglass", "Trinket", 3}},
+            loot = {{5198, "Cookie's Stirring Rod", "Ranged, Wand", 3}, {5197, "Cookie's Tenderizer", "One-Hand, Mace", 3}, {273298, "Lookie's Spyglass", "Trinket", 3}, {273102, "Blueprint: Cookie's Feast", "Cooking", 2}},
             npcID = 645,
         }, {
             -- Only dungeon-specific non-boss drops belong here. Do not add
@@ -1211,6 +1238,21 @@ DB["Ragefire Chasm"] = {
                 {273003, "Searing Dagger", "Main Hand, Dagger", 3},
                 {273007, "Chasm Walkers", "Feet, Leather", 3},
                 {273005, "Satyrskin Cloak", "Back, Cloth", 3},
+            },
+        },
+        {
+            -- Searing Blade and Trogg trash drops.
+            name = "Trash Drops",
+            trash = true,
+            loot = {
+                {12992, "Searing Blade", "Two-Hand, Sword", 3, "Searing Blade trash (rare)"},
+                {253906, "Pattern: Filigreed Flame Gown", "Recipe", 3, "Searing Blade trash (rare)"},
+                {273003, "Searing Dagger", "Main Hand, Dagger", 3, "Searing Blade trash (rare)"},
+                {273007, "Chasm Walkers", "Feet, Leather", 3, "Ragefire Chasm trash (rare)"},
+                {273005, "Satyrskin Cloak", "Back, Cloth", 3, "Ragefire Chasm trash (rare)"},
+                {272996, "Trogg Scepter", "Main Hand, Mace", 3, "Ragefire Trogg drop (rare)"},
+                {272998, "Bone Knuckles", "Main Hand, Fist Weapon", 3, "Ragefire Trogg drop (rare)"},
+                {272999, "Barbaric Crossbow", "Ranged, Crossbow", 3, "Ragefire Trogg drop (rare)"},
             },
         },
     },
@@ -1611,7 +1653,6 @@ FDJ.DB["The Stockade"] = {
 -- Level-30 bracket preview cards. These dungeons are intentionally listed on
 -- the home page before their boss, loot and quest data is implemented.
 FDJ.DB["Excavation Site: Wetlands"] = {
-    fullItemsTBD = true, -- shows "Full Items Data TBD"
     level = "24-29",
     location = "Wetlands",
     description = "A Titan dig site trapped in time above Whelgar's Excavation, where errant Titan constructs have stopped obeying anyone. Areas inside: Lost Marsh, Stalker's Thicket, Site of the Guardian and Lost Dig Site.",
@@ -1785,6 +1826,18 @@ FDJ.DB["Excavation Site: Wetlands"] = {
             },
         },
         {
+            name = "Highland Horror",
+            npcID = 260324,
+            aliases = {"Highland Horror"},
+            description = "An ancient overgrown bog monstrosity awakened in the marshy excavation.",
+            loot = {
+                {271667, "Ironwood Destroyer", "Two-Hand, Mace", 3},
+                {271670, "Curl of Life", "Neck", 3},
+                {271664, "Hornbeam Heft", "Main Hand, Axe", 3},
+                {271668, "Root Core of the Horror", "Quest Item", 1},
+            },
+        },
+        {
             name = "Relic Guardian",
             npcID = 260326,
             aliases = {"Relic Guardian"},
@@ -1800,10 +1853,9 @@ FDJ.DB["Excavation Site: Wetlands"] = {
 }
 
 FDJ.DB["City of Dalaran"] = {
-    itemsTBD = true, -- only two drops known so far (BlizzCon demo)
     level = "28-33",
     location = "Alterac Mountains",
-    description = "The restored mage city of Dalaran has become a new five-player dungeon in WoW Forever. Enter through the sewers and the Underbelly, then fight through the streets to the Violet Citadel.",
+    description = "The restored mage city of Dalaran has become a new five-player dungeon in WoW Forever. Enter through the sewers and the Underbelly, then fight through the streets to the Violet Citadel. Note: Alliance enter via Cantrips & Crows through the sewer pipe; Horde players must obtain the Dalaran Sewer Key to unlock the Underbelly entrance.",
     icon = "Interface\\Icons\\Spell_Arcane_Arcane01",
     quests = {
 
@@ -1837,6 +1889,7 @@ FDJ.DB["City of Dalaran"] = {
             description = "An arcane golem by the Magus Commerce Exchange, with Angry Tomes. Malfunction hits everyone within 25 yards.",
             loot = {
                 {273046, "Guardian's Dualblade", "Weapon", 3},
+                {273103, "Blueprint: Arcane Salvager", "Engineering", 2},
             },
         },
         {
@@ -1872,13 +1925,13 @@ FDJ.DB["City of Dalaran"] = {
             description = "Final boss, in the Purple Parlor of the Violet Citadel. Don't stand in line with the Bounding Mana target; he polymorphs the group and resets if someone leaves the room.",
             loot = {
                 {273052, "Ponderous Orb", "Held In Off-hand", 3},
+                {275989, "Tome of Dalaran", "Held In Off-hand", 3},
             },
         },
     },
 }
 
 FDJ.DB["Gnomeregan"] = {
-    fullItemsTBD = true, -- shows "Full Items Data TBD"
     level = "29-38",
     location = "Dun Morogh",
     description = "The irradiated underground city of the gnomes, overrun by troggs and Mekgineer Thermaplugg's forces.",
@@ -2138,7 +2191,6 @@ FDJ.DB["Gnomeregan"] = {
 }
 
 FDJ.DB["Razorfen Kraul"] = {
-    fullItemsTBD = true, -- shows "Full Items Data TBD"
     level = "29-38",
     location = "The Barrens",
     description = "A sprawling thorn maze occupied by the quilboar of Razorfen Kraul.",
@@ -2169,7 +2221,7 @@ FDJ.DB["Razorfen Kraul"] = {
                 {6748, "Monkey Ring", 2},
                 {6750, "Snake Hoop", 2},
                 {6749, "Tiger Band", 2},
-                {0, "Boar Signet", 3, nil, "Interface\\Icons\\INV_Jewelry_Ring_06"},
+                {270048, "Boar Signet", 3},
             },
             rewardSummary = "7,468 XP",
         },
@@ -2332,11 +2384,27 @@ FDJ.DB["Razorfen Kraul"] = {
                 {6688, "Whisperwind Headdress", "Head, Leather", 3},
             },
         },
+        {
+            -- Razorfen Kraul-specific BoE zone drops.
+            name = "Trash Drops",
+            trash = true,
+            loot = {
+                {776, "Vendetta", "One-Hand, Dagger", 3, "Razorfen Kraul trash (rare)"},
+                {1976, "Slaghammer", "Two-Hand, Mace", 3, "Razorfen Kraul trash (rare)"},
+                {1978, "Wolfclaw Gloves", "Hands, Leather", 3, "Razorfen Kraul trash (rare)"},
+                {2039, "Plains Ring", "Finger", 3, "Razorfen Kraul trash (rare)"},
+                {2264, "Mantle of Thieves", "Shoulder, Leather", 3, "Razorfen Kraul trash (rare)"},
+                {2549, "Staff of the Shade", "Two-Hand, Staff", 3, "Razorfen Kraul trash (rare)"},
+                {2816, "Death Speaker Scepter", "Main Hand, Mace", 3, "Death Speaker trash"},
+                {4438, "Pugilist Bracers", "Wrist, Mail", 3, "Razorfen Kraul trash (rare)"},
+                {10764, "Deathchill Armor", "Chest, Mail", 3, "Razorfen Kraul trash (rare)"},
+                {284386, "Whipfang's Skinsearer", "One-Hand, Dagger", 3, "Razorfen Kraul trash (rare)"},
+            },
+        },
     },
 }
 
 FDJ.DB["Scarlet Monastery: Graveyard"] = {
-    fullItemsTBD = true, -- shows "Full Items Data TBD"
     level = "30-38",
     location = "Tirisfal Glades",
     description = "The graveyard wing of the Scarlet Monastery, haunted by restless dead and Scarlet defenders.",
