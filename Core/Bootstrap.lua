@@ -11,8 +11,70 @@ FDJ.Constants = FDJ.Constants or {}
 FDJ.Constants.ALBA_FAIRMOON_LOCATION = "Alba Fairmoon, Sentinel Hill inn, Westfall"
 FDJ.WISHLIST_STAR_TEXTURE = "|TInterface\\AddOns\\ForeverDungeonJournal\\Media\\Star_Gold.tga:13:13:0:-1|t "
 FDJ.DUNGEON_MAPS = FDJ.DUNGEON_MAPS or {}
+FDJ.questDataRequests = FDJ.questDataRequests or {}
 
 ForeverDungeonJournalDB = ForeverDungeonJournalDB or {}
+
+-- ============================================================
+-- DEFENSIVE SAVEDVARIABLES DEFAULTS & SCHEMA MIGRATION
+-- ============================================================
+local function MergeDefaults(src, dest)
+    if type(src) ~= "table" then return {} end
+    if type(dest) ~= "table" then dest = {} end
+    for k, v in pairs(src) do
+        if type(v) == "table" then
+            dest[k] = MergeDefaults(v, dest[k])
+        elseif dest[k] == nil then
+            dest[k] = v
+        end
+    end
+    return dest
+end
+FDJ.MergeDefaults = MergeDefaults
+
+function FDJ.MigrateDatabase()
+    if type(ForeverDungeonJournalDB) ~= "table" then
+        ForeverDungeonJournalDB = {}
+    end
+
+    local defaults = {
+        lastDungeon = "Ragefire Chasm",
+        lastBoss = 1,
+        lastQuest = 1,
+        lastMode = "bosses",
+        questFaction = "Alliance",
+        showItemTooltips = true,
+        showComparisonTooltips = true,
+        language = "auto",
+        minimapAngle = 225,
+        minimapHidden = false,
+        minimap = { hide = false, minimapPos = 225 },
+        wishlists = {},
+        scale = 1.0,
+        defeatedBosses = {},
+        activeInstanceMapID = nil,
+        seenNotices = {},
+        displayIDs = {},
+        portraitTexturesByNpcID = {},
+        hiddenDungeons = {},
+    }
+
+    MergeDefaults(defaults, ForeverDungeonJournalDB)
+
+    -- Prune deprecated learning tables from past beta versions
+    ForeverDungeonJournalDB.learnedNpcIDs = nil
+    ForeverDungeonJournalDB.portraitFileIDs = nil
+
+    if ForeverDungeonJournalDB.portraitCacheVersion ~= 2 then
+        ForeverDungeonJournalDB.displayIDs = {}
+        ForeverDungeonJournalDB.portraitCacheVersion = 2
+    end
+
+    FDJ.displayIDCache = ForeverDungeonJournalDB.displayIDs
+    FDJ.portraitTexturesByNpcID = ForeverDungeonJournalDB.portraitTexturesByNpcID
+end
+
+FDJ.MigrateDatabase()
 
 -- Native WoW keybinding entry (Options > Keybindings > AddOns).
 
@@ -122,20 +184,35 @@ end
 
 function FDJ.IsBossDefeated(dungeonName, bossIndex)
     if not dungeonName or not bossIndex then return false end
-    local byDung = FDJ.defeatedBosses[dungeonName]
+    local byDung = (ForeverDungeonJournalDB and ForeverDungeonJournalDB.defeatedBosses and ForeverDungeonJournalDB.defeatedBosses[dungeonName])
+        or (FDJ.defeatedBosses and FDJ.defeatedBosses[dungeonName])
     return (byDung and byDung[bossIndex]) == true
 end
 
 function FDJ.SetBossDefeated(dungeonName, bossIndex, isDefeated)
     if not dungeonName or not bossIndex then return end
+    if ForeverDungeonJournalDB then
+        ForeverDungeonJournalDB.defeatedBosses = ForeverDungeonJournalDB.defeatedBosses or {}
+        ForeverDungeonJournalDB.defeatedBosses[dungeonName] = ForeverDungeonJournalDB.defeatedBosses[dungeonName] or {}
+        ForeverDungeonJournalDB.defeatedBosses[dungeonName][bossIndex] = isDefeated and true or nil
+    end
+    FDJ.defeatedBosses = FDJ.defeatedBosses or {}
     FDJ.defeatedBosses[dungeonName] = FDJ.defeatedBosses[dungeonName] or {}
     FDJ.defeatedBosses[dungeonName][bossIndex] = isDefeated and true or nil
 end
 
 function FDJ.ResetDefeatedBosses(dungeonName)
     if dungeonName then
-        FDJ.defeatedBosses[dungeonName] = nil
+        if ForeverDungeonJournalDB and ForeverDungeonJournalDB.defeatedBosses then
+            ForeverDungeonJournalDB.defeatedBosses[dungeonName] = nil
+        end
+        if FDJ.defeatedBosses then
+            FDJ.defeatedBosses[dungeonName] = nil
+        end
     else
+        if ForeverDungeonJournalDB then
+            ForeverDungeonJournalDB.defeatedBosses = {}
+        end
         FDJ.defeatedBosses = {}
     end
 end

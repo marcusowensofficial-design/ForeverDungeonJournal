@@ -5,6 +5,15 @@ FDJ.FOREVER_QUEST_XP_FALLBACK = {
     -- Verified prerequisite quest XP at their intended quest level.
     [96391] = 1050, -- Underground Map
     [95647] = 4900, -- Lost in the Thicket Things (Excavation Site prerequisite)
+    [98823] = 3150, -- Earthen Echo (Excavation Site follow-up)
+    [95664] = 1400, -- Elder Knowledge
+    [95646] = 6150, -- Horrors in the Highland
+    [95772] = 6150, -- Songblade Search
+    [95809] = 6150, -- Heartwoven
+    [463] = 1350,   -- The Greenwarden (Horrors in the Highland prereq 1)
+    [276] = 1950,   -- Tramping Paws (Horrors in the Highland prereq 2)
+    [277] = 2100,   -- Fire Taboo (Horrors in the Highland prereq 3)
+    [275] = 2450,   -- Blisters on The Land (Horrors in the Highland prereq 4)
     [870] = 680,    -- The Forgotten Pools
     [877] = 1150,   -- The Stagnant Oasis
     [880] = 1150,   -- Altered Beings
@@ -191,4 +200,9 @@ FDJ.PREREQ_REWARD_MONEY_FALLBACK = {
     [92747] = 400,
     [92749] = 400,
     [92752] = 400,
+    [98823] = 6000,
+    [463] = 250,
+    [276] = 600,
+    [277] = 700,
+    [275] = 850,
 }

@@ -1,5 +1,5 @@
-ForeverDungeonJournal = ForeverDungeonJournal or {}
-local FDJ = ForeverDungeonJournal
+local ADDON_NAME, FDJ = ...
+FDJ = FDJ or _G.ForeverDungeonJournal_NS
 
 -- Audited quest shareability for dungeon quests and their prerequisite chains.
 -- Entries here override the runtime predicate so the journal can show reliable
@@ -74,12 +74,20 @@ FDJ.QUEST_SHAREABILITY_AUDIT = {
     [1200] = true,    -- Blackfathom Villainy (Alliance)
     [1199] = true,    -- Twilight Falls
     [6564] = false,   -- Allegiance to the Old Gods (item-start step)
+    [6922] = false,   -- Baron Aquanis (item-start quest from Strange Water Globe)
     [6562] = true,    -- Trouble in the Deeps
     [6563] = true,    -- Essence of Aku'Mai
     [6565] = true,    -- Allegiance to the Old Gods (final)
     [6561] = true,    -- Blackfathom Villainy (Horde)
     [6921] = true,    -- Amongst the Ruins
     [3765] = true,    -- The Corruption Abroad
+
+    -- Gnomeregan ring chain
+    [2945] = false,  -- Grime-Encrusted Ring
+    [2947] = false,  -- Return of the Ring (Alliance)
+    [2948] = false,  -- Gnome Improvement
+    [2949] = false,  -- Return of the Ring (Horde)
+    [2950] = false,  -- Nogg's Ring Redo
 
     -- Ragefire Chasm
     [5723] = true,    -- Testing an Enemy's Strength
@@ -106,4 +114,16 @@ FDJ.QUEST_SHAREABILITY_AUDIT = {
     [391] = true,     -- The Stockade Riots
     [303] = true,     -- The Dark Iron War
     [389] = true,     -- Bazil Thredd
+
+    -- Excavation Site: Wetlands
+    [98823] = false,  -- Earthen Echo
+    [95664] = false,  -- Elder Knowledge (item drop)
+    [95646] = true,   -- Horrors in the Highland
+    [95772] = true,   -- Songblade Search
+    [95809] = true,   -- Heartwoven
+    [95647] = true,   -- Lost in the Thicket Things
+    [463] = true,     -- The Greenwarden
+    [276] = true,     -- Tramping Paws
+    [277] = true,     -- Fire Taboo
+    [275] = true,     -- Blisters on The Land
 }

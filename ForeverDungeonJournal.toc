@@ -1,11 +1,13 @@
 ## Interface: 16001
-## Title: Dungeon Journal
+## Title: Dungeon Journal [AllowLoadGameType camelot]
 ## Notes: Boss, loot and quest journal for WoW Classic dungeons.
 ## Author: Exehn
-## Version: 1.5.0
+## Version: 1.6.0
 ## IconTexture: Interface\Icons\INV_Misc_Book_09
 ## SavedVariables: ForeverDungeonJournalDB
+## SavedVariablesPerCharacter: ForeverDungeonJournalCharacterDB
 ## LoadSavedVariablesFirst: true
+## AllowLoadGameType: camelot
 
 
 Core\Bootstrap.lua
@@ -29,6 +31,8 @@ Localization\Content_zhCN.lua
 Localization\Content_zhTW.lua
 Localization\Content_NewDungeons.lua
 Data\Dungeons.lua
+Data\ItemReqLevels.lua
+Data\DropRates.lua
 Data\DungeonEntrances.lua
 Data\DungeonRoutes.lua
 Data\DungeonMaps.lua
@@ -38,7 +42,30 @@ Data\QuestMaps.lua
 Data\QuestChains.lua
 Data\QuestRewards.lua
 Data\QuestShareability.lua
+Data\QuestUpdates.lua
+Data\DungeonPreparation.lua
 UI\ThemeData.lua
 UI\ItemComparisonData.lua
 Systems\MapMarkers.lua
+Systems\PortraitPool.lua
+Systems\VersionCheck.lua
+Systems\LootFilter.lua
+Systems\Favourites.lua
+Systems\BugReport.lua
+Systems\ScarletWing.lua
+Systems\WorldMapOverlay.lua
+Systems\Resize.lua
+Systems\OptionsPanel.lua
+UI\Utilities.lua
+UI\Minimap.lua
+UI\Portraits.lua
+UI\Tooltips.lua
+UI\DungeonMapsTab.lua
+UI\SearchWishlist.lua
+UI\LootExplorer.lua
+UI\HomeTab.lua
+UI\BossTab.lua
+UI\QuestsTab.lua
+UI\MainFrame.lua
+UI\DungeonPrep.lua
 Core\Journal.lua

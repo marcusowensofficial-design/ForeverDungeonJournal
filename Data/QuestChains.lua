@@ -144,10 +144,38 @@ FDJ.QUEST_PREREQ_CHAINS = {
     [95809] = {
         { id = 95647, name = "Lost in the Thicket Things" },
     },
+
+    -- Excavation Site: Wetlands (Alliance): Horrors in the Highland
+    -- requires a 4-part prerequisite chain starting with First Mate Fitzsimmons in Menethil Harbor.
+    [95646] = {
+        { id = 463, name = "The Greenwarden" },
+        { id = 276, name = "Tramping Paws" },
+        { id = 277, name = "Fire Taboo" },
+        { id = 275, name = "Blisters on The Land" },
+    },
+
+    -- Excavation Site: Wetlands (Horde): Earthen Echo follows Elder Knowledge.
+    [98823] = {
+        { id = 95664, name = "Elder Knowledge" },
+    },
+
+    -- Excavation Site: Wetlands (Alliance): Heartwoven follows Lost in the Thicket Things.
+    [95809] = {
+        { id = 95647, name = "Lost in the Thicket Things" },
+    },
 }
 
 FDJ.QUEST_PREREQ_DETAILS = {
     [95647] = { level = 31, requires = 24, objective = "Find Ardin Grassman in the Excavation Sites. Learn what happened to Ardin Grassman.", pickup = "Caitlin Grassman, Menethil Harbor, Wetlands", turnin = "Ardin Grassman, inside Excavation Site: Wetlands", description = "Required before Heartwoven.", map = { mapID = 1437, x = 0.105, y = 0.575, label = "Caitlin Grassman — Menethil Harbor", detail = "Start Lost in the Thicket Things here" } },
+
+    -- Horrors in the Highland prerequisite chain steps.
+    [463] = { level = 25, requires = 20, objective = "Speak with Rethiel the Greenwarden in the Wetlands.", pickup = "First Mate Fitzsimmons, Menethil Harbor, Wetlands", turnin = "Rethiel the Greenwarden, Wetlands", description = "First step of the 4-part prerequisite chain leading to Horrors in the Highland.", map = { mapID = 1437, x = 0.108, y = 0.605, label = "First Mate Fitzsimmons — Menethil Harbor", detail = "Start The Greenwarden here" } },
+    [276] = { level = 25, requires = 20, objective = "Kill 15 Mosshide Gnolls and 10 Mosshide Mongrels, then return to Rethiel the Greenwarden.", pickup = "Rethiel the Greenwarden, Wetlands", turnin = "Rethiel the Greenwarden, Wetlands", description = "Second step of the Greenwarden chain; kill gnolls in Mosshide Fen.", map = { mapID = 1437, x = 0.564, y = 0.404, label = "Rethiel the Greenwarden — Wetlands", detail = "Turn in and accept Tramping Paws" } },
+    [277] = { level = 26, requires = 20, objective = "Collect 9 Crude Flints from Mosshide gnolls and bring them to Rethiel the Greenwarden.", pickup = "Rethiel the Greenwarden, Wetlands", turnin = "Rethiel the Greenwarden, Wetlands", description = "Third step of the Greenwarden chain; flints drop from gnolls across western Wetlands.", map = { mapID = 1437, x = 0.564, y = 0.404, label = "Rethiel the Greenwarden — Wetlands", detail = "Turn in and accept Fire Taboo" } },
+    [275] = { level = 28, requires = 20, objective = "Slay 12 Fen Creepers and return to Rethiel the Greenwarden in the Wetlands.", pickup = "Rethiel the Greenwarden, Wetlands", turnin = "Rethiel the Greenwarden, Wetlands", description = "Final prerequisite before Horrors in the Highland becomes available; Fen Creepers roam the northern wetlands waterways.", map = { mapID = 1437, x = 0.564, y = 0.404, label = "Rethiel the Greenwarden — Wetlands", detail = "Turn in Blisters on The Land to unlock Horrors in the Highland" } },
+
+    -- Excavation Site: Wetlands (Horde) Elder Knowledge prerequisite step for Earthen Echo.
+    [95664] = { level = 31, requires = 24, objective = "Take the Titan Relic to the Elder Rise in Thunder Bluff and look for someone who can tell you more about it.", pickup = "Titan Relic (dropped by Relic Guardian)", turnin = "Bashana Runetotem, Elder Rise, Thunder Bluff", description = "Required before Earthen Echo.", startItem = {270866, "Titan Relic", 1, "Dropped by: Relic Guardian"}, map = { mapID = 1437, x = 0.478, y = 0.563, label = "Excavation Site: Wetlands Entrance", detail = "Looted from Relic Guardian inside the dungeon" } },
 
 
     -- Gnomeregan prerequisite steps.

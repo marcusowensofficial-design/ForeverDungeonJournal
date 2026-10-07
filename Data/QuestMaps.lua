@@ -64,6 +64,8 @@ FDJ.QUEST_START_MAPS = {
     [2929] = { mapID = 1455, x = 0.680, y = 0.490, label = "High Tinker Mekkatorque — Tinker Town, Ironforge", targetName = "High Tinker Mekkatorque" },
     [2843] = { mapID = 1434, x = 0.280, y = 0.770, label = "Scooty — Booty Bay", targetName = "Scooty" },
     [2841] = { mapID = 1454, x = 0.760, y = 0.250, label = "Nogg — Valley of Honor, Orgrimmar", targetName = "Nogg" },
+    [2948] = { mapID = 1455, x = 0.357, y = 0.040, label = "Talvash del Kissel — Mystic Ward, Ironforge", targetName = "Talvash del Kissel" },
+    [2950] = { mapID = 1454, x = 0.760, y = 0.250, label = "Nogg — Valley of Honor, Orgrimmar", targetName = "Nogg" },
 
     -- Razorfen Kraul quest givers.
     [1221] = { mapID = 1413, x = 0.620, y = 0.370, label = "Mebok Mizzyrix — Ratchet", targetName = "Mebok Mizzyrix" },
@@ -74,4 +76,14 @@ FDJ.QUEST_START_MAPS = {
     -- Scarlet Monastery: Graveyard quest giver outside the instance.
     [1113] = { mapID = 1458, x = 0.480, y = 0.690, label = "Master Apothecary Faranell — Apothecarium", targetName = "Master Apothecary Faranell" },
 
+    -- Excavation Site: Wetlands quest givers.
+    [98823] = { mapID = 1456, x = 0.708, y = 0.338, label = "Bashana Runetotem — Elder Rise, Thunder Bluff", targetName = "Bashana Runetotem" },
+    [463]   = { mapID = 1437, x = 0.108, y = 0.605, label = "First Mate Fitzsimmons — Menethil Harbor", targetName = "First Mate Fitzsimmons" },
+    [276]   = { mapID = 1437, x = 0.564, y = 0.404, label = "Rethiel the Greenwarden — Wetlands", targetName = "Rethiel the Greenwarden" },
+    [277]   = { mapID = 1437, x = 0.564, y = 0.404, label = "Rethiel the Greenwarden — Wetlands", targetName = "Rethiel the Greenwarden" },
+    [275]   = { mapID = 1437, x = 0.564, y = 0.404, label = "Rethiel the Greenwarden — Wetlands", targetName = "Rethiel the Greenwarden" },
+    [95646] = { mapID = 1437, x = 0.562, y = 0.406, label = "Rethiel the Greenwarden — Wetlands", targetName = "Rethiel the Greenwarden" },
+    [95772] = { mapID = 1433, x = 0.256, y = 0.466, label = "Dorin Songblade — Redridge Mountains", targetName = "Dorin Songblade" },
+    [95647] = { mapID = 1437, x = 0.119, y = 0.588, label = "Caitlin Grassman — Menethil Harbor", targetName = "Caitlin Grassman" },
+    [95664] = { mapID = 1437, x = 0.478, y = 0.563, label = "Excavation Site: Wetlands Entrance", detail = "Looted from Relic Guardian inside the dungeon" },
 }
