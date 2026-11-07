@@ -39,7 +39,27 @@ local DUNGEON_SEARCH_ALIASES = {
     ["City of Dalaran"] = { "dalaran", "dal", "sewers", "underbelly" },
     ["Gnomeregan"] = { "gnomer", "gnome", "thermaplugg" },
     ["Razorfen Kraul"] = { "rfk", "kraul", "razorfen" },
-    ["Scarlet Monastery: Graveyard"] = { "sm gy", "gy", "graveyard", "monastery" },
+    ["Scarlet Monastery: Graveyard"] = { "sm gy", "smgy", "gy", "graveyard", "monastery" },
+    ["Scarlet Monastery: Library"] = { "sm lib", "smlib", "lib", "library", "monastery" },
+    ["Scarlet Monastery: Armory"] = { "sm arm", "smarm", "arm", "armory", "herod", "monastery" },
+    ["Scarlet Monastery: Cathedral"] = { "sm cath", "smcath", "cath", "cathedral", "whitemane", "mograine", "monastery" },
+    ["Razorfen Downs"] = { "rfd", "downs", "amnennar" },
+    ["Uldaman"] = { "ulda", "archaedas" },
+    ["Zul'Farrak"] = { "zf", "zulfarrak", "gahzrilla", "tanaris" },
+    ["Maraudon"] = { "mara", "theradras", "princess" },
+    ["Sunken Temple"] = { "st", "temple", "atal'hakkar", "atalhakkar", "eranikus", "hakkar" },
+    ["Blackrock Depths"] = { "brd", "depths", "emp", "thaurissan", "shadowforge" },
+    ["Lower Blackrock Spire"] = { "lbrs", "lower spire", "wyrmthalak" },
+    ["Upper Blackrock Spire"] = { "ubrs", "upper spire", "rend", "drakkisath" },
+    ["Dire Maul: East"] = { "dm east", "dme", "east", "alzzin", "pusillin" },
+    ["Dire Maul: West"] = { "dm west", "dmw", "west", "immol'thar", "tortheldrin" },
+    ["Dire Maul: North"] = { "dm north", "dmn", "dmt", "tribute", "gordok" },
+    ["Stratholme: Living"] = { "strat live", "strat living", "living", "scarlet strat", "balnazzar" },
+    ["Stratholme: Undead"] = { "strat ud", "strat undead", "undead", "baron", "rivendare" },
+    ["Scholomance"] = { "scholo", "gandling", "ras frostwhisper" },
+    ["The Drowned City"] = { "drowned", "drowned city", "sunken hollow" },
+    ["Krol'dok Stronghold"] = { "kroldok", "krol'dok", "stronghold" },
+    ["Shaper's Terrace"] = { "shapers", "shaper's terrace", "terrace" },
 }
 
 local function SearchText(value)
@@ -169,6 +189,12 @@ function FDJ.CreateGlobalSearchUI(frame)
     local MAX_VISIBLE_SEARCH_RESULTS = 6
     local MAX_SEARCH_RESULTS = 80
 
+    local function SearchSkipsDungeon(dungeonName)
+        if FDJ.IsDungeonLocked and FDJ.IsDungeonLocked(dungeonName) then return true end
+        local d = FDJ.DB and FDJ.DB[dungeonName]
+        return (d and d.previewOnly and FDJ.IsRPGMode and FDJ.IsRPGMode()) and true or false
+    end
+
     local function BuildSearchResults(queryText)
         local query = SearchText(queryText):gsub("^%s+", ""):gsub("%s+$", "")
         local results = {}
@@ -176,7 +202,7 @@ function FDJ.CreateGlobalSearchUI(frame)
         if query == "" then
             for _, dungeonName in ipairs(FDJ.ORDER or {}) do
                 local dungeon = FDJ.DB and FDJ.DB[dungeonName]
-                if dungeon then
+                if dungeon and not SearchSkipsDungeon(dungeonName) then
                     results[#results + 1] = {
                         kind = "dungeon",
                         dungeonName = dungeonName,
@@ -193,7 +219,7 @@ function FDJ.CreateGlobalSearchUI(frame)
 
         for _, dungeonName in ipairs(FDJ.ORDER or {}) do
             local dungeon = FDJ.DB and FDJ.DB[dungeonName]
-            if dungeon then
+            if dungeon and not SearchSkipsDungeon(dungeonName) then
                 local localizedDungeon = DungeonName(dungeonName)
                 local aliases = DUNGEON_SEARCH_ALIASES[dungeonName]
                 local aliasText = aliases and table.concat(aliases, " ") or ""
@@ -206,19 +232,58 @@ function FDJ.CreateGlobalSearchUI(frame)
                     texCoord = FDJ.DUNGEON_HOME_TEXCOORD and FDJ.DUNGEON_HOME_TEXCOORD[dungeonName],
                 }, query, -30, localizedDungeon, dungeonName, aliasText)
 
+                local seenSharedInDungeon = {}
                 for bossIndex, boss in ipairs(dungeon.bosses or {}) do
-                    for _, item in ipairs(boss.loot or {}) do
-                        local itemName = SearchItemDisplayName(item)
-                        AddSearchCandidate(results, {
-                            kind = "item",
-                            mode = "bosses",
-                            dungeonName = dungeonName,
-                            bossIndex = bossIndex,
-                            itemID = item[1],
-                            displayName = itemName,
-                            subText = localizedDungeon .. "  -  " .. BossName(boss.name),
-                            icon = item[5] or (FDJ.ItemIcon and FDJ.ItemIcon(item[1])),
-                        }, query, 0, itemName, item[2])
+                    local bossHidden = FDJ.RPGBossHidden and FDJ.RPGBossHidden(dungeonName, boss) or false
+                    if not boss.recipeTab and not bossHidden then
+                        for _, item in ipairs(boss.loot or {}) do
+                            local itemName = SearchItemDisplayName(item)
+                            AddSearchCandidate(results, {
+                                kind = "item",
+                                mode = "bosses",
+                                dungeonName = dungeonName,
+                                bossIndex = bossIndex,
+                                itemID = item[1],
+                                displayName = itemName,
+                                subText = localizedDungeon .. "  -  " .. BossName(boss.name),
+                                icon = item[5] or (FDJ.ItemIcon and FDJ.ItemIcon(item[1])),
+                            }, query, 0, itemName, item[2])
+                        end
+                        local sharedLoot = FDJ.GetBossSharedLoot and FDJ.GetBossSharedLoot(dungeonName, boss) or nil
+                        if sharedLoot then
+                            for _, sItem in ipairs(sharedLoot) do
+                                local sID = tonumber(sItem and sItem[1])
+                                if sID and not seenSharedInDungeon[sID] then
+                                    seenSharedInDungeon[sID] = true
+                                    local itemName = SearchItemDisplayName(sItem)
+                                    AddSearchCandidate(results, {
+                                        kind = "item",
+                                        mode = "bosses",
+                                        dungeonName = dungeonName,
+                                        bossIndex = bossIndex,
+                                        itemID = sID,
+                                        isSharedLoot = true,
+                                        displayName = itemName,
+                                        subText = localizedDungeon .. "  -  " .. BossName(boss.name) .. " (Shared)",
+                                        icon = sItem[5] or (FDJ.ItemIcon and FDJ.ItemIcon(sID)),
+                                    }, query, 2, itemName, sItem[2])
+                                end
+                            end
+                        end
+                        for _, pItem in ipairs(type(boss.probableLoot) == "table" and boss.probableLoot or {}) do
+                            local itemName = SearchItemDisplayName(pItem)
+                            AddSearchCandidate(results, {
+                                kind = "item",
+                                mode = "bosses",
+                                dungeonName = dungeonName,
+                                bossIndex = bossIndex,
+                                itemID = pItem[1],
+                                isProbableLoot = true,
+                                displayName = itemName,
+                                subText = localizedDungeon .. "  -  " .. BossName(boss.name) .. " (Probable)",
+                                icon = pItem[5] or (FDJ.ItemIcon and FDJ.ItemIcon(pItem[1])),
+                            }, query, 3, itemName, pItem[2])
+                        end
                     end
                 end
 
@@ -236,7 +301,7 @@ function FDJ.CreateGlobalSearchUI(frame)
                     AddQuestSearchItem(quest.startItem)
                     AddQuestSearchItem(quest.noteItem)
 
-                    for _, item in ipairs(questItems) do
+                    for _, item in ipairs((FDJ.RPGQuestHidden and FDJ.RPGQuestHidden(dungeonName, quest)) and {} or questItems) do
                         local itemName = SearchItemDisplayName(item)
                         AddSearchCandidate(results, {
                             kind = "item",
@@ -350,8 +415,11 @@ function FDJ.CreateGlobalSearchUI(frame)
         searchResults:Hide()
         if FDJ.SelectDungeon then FDJ.SelectDungeon(result.dungeonName) end
         if result.kind == "item" and result.mode == "bosses" then
+            if result.isSharedLoot then FDJ.lootSharedExpanded = true end
+            if result.isProbableLoot then FDJ.lootProbableExpanded = true end
             if FDJ.SetMode then FDJ.SetMode("bosses") end
             if result.bossIndex and FDJ.SelectBoss then FDJ.SelectBoss(result.bossIndex) end
+            if FDJ.SetBossSubTab then FDJ.SetBossSubTab("loot") end
             FocusSearchItem(result)
         elseif (result.kind == "item" or result.kind == "quest") and result.mode == "quests" then
             if FDJ.SetMode then FDJ.SetMode("quests") end

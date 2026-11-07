@@ -182,6 +182,15 @@ local function UpdateQuestActionButtonSizes()
         frame.questMapButton:SetWidth(width)
     end
 
+    if frame.questTurninMapButton then
+        local turninText = L("SHOW_TURN_IN") or L("SHOW_ON_MAP") or ""
+        frame.questTurninMapButton:SetText(turninText)
+        local fs = frame.questTurninMapButton:GetFontString()
+        local textWidth = fs and fs:GetStringWidth() or 0
+        local width = math.max(104, math.min(164, math.ceil(textWidth + 24)))
+        frame.questTurninMapButton:SetWidth(width)
+    end
+
     if frame.questChainButton then
         local chainText = L("SHOW_QUEST_CHAIN") or ""
         frame.questChainButton:SetText(chainText)
@@ -321,11 +330,28 @@ local function UpdateModeTabs()
             frame.dungeonPrepButton:SetBackdropColor(0.12, 0.115, 0.105, 0.95)
         end
     end
+    if FDJ.RPGStyleMapTab then FDJ.RPGStyleMapTab(frame.mapTab, selectedDungeon) end
 end
 
 local function UpdateDungeonHeaderTabs()
     SyncMainState()
     if not frame or not frame.bossesTab or not frame.questsTab then return end
+
+    local currentDungeon = FDJ.DB and FDJ.DB[selectedDungeon]
+    if currentDungeon and currentDungeon.questChainPage then
+        frame.bossesTab:Hide()
+        frame.questsTab:Show()
+        frame.questsTab:ClearAllPoints()
+        frame.questsTab:SetSize(108, 30)
+        frame.questsTab:SetPoint("TOPRIGHT", -13, -14)
+        if frame.mapTab then frame.mapTab:Hide() end
+        if frame.dungeonRouteButton then frame.dungeonRouteButton:Hide() end
+        if frame.dungeonPrepButton then frame.dungeonPrepButton:Hide() end
+        if frame.dungeonMapPanel then frame.dungeonMapPanel:Hide() end
+        if frame.dungeonRoutePanel then frame.dungeonRoutePanel:Hide() end
+        if frame.dungeonPrepPanel then frame.dungeonPrepPanel:Hide() end
+        return
+    end
 
     -- All dungeons now use the same larger two-tab layout.  The experimental
     -- dungeon-map tab is disabled for now until the map presentation is ready.
@@ -425,6 +451,7 @@ local function UpdateDungeonHeaderTabs()
             frame.mapTab.text:SetJustifyH("CENTER")
         end
     end
+    if FDJ.RPGStyleMapTab then FDJ.RPGStyleMapTab(frame.mapTab, selectedDungeon) end
 end
 
 local function ApplyTheme()
@@ -598,6 +625,10 @@ ApplyLocalization = function()
     end
     if frame.bossListTitle then frame.bossListTitle:SetText(L("BOSSES")) end
     if frame.questListTitle then frame.questListTitle:SetText(L("QUESTS")) end
+    if frame.tacticsTankCard and frame.tacticsTankCard.label then frame.tacticsTankCard.label:SetText(L("TANK") or "Tank") end
+    if frame.tacticsHealerCard and frame.tacticsHealerCard.label then frame.tacticsHealerCard.label:SetText(L("HEALER") or "Healer") end
+    if frame.tacticsMeleeCard and frame.tacticsMeleeCard.label then frame.tacticsMeleeCard.label:SetText(L("MELEE_DPS") or "Melee DPS") end
+    if frame.tacticsRangedCard and frame.tacticsRangedCard.label then frame.tacticsRangedCard.label:SetText(L("RANGED_DPS") or "Ranged DPS") end
     if frame.questObjectiveHeader then frame.questObjectiveHeader:SetText(L("OBJECTIVE")) end
     if frame.questRequiredItemsHeader then frame.questRequiredItemsHeader:SetText(L("REQUIRED_ITEMS")) end
     if frame.questStartsHeader then frame.questStartsHeader:SetText(L("STARTS_AT")) end
@@ -772,6 +803,13 @@ RefreshAll = function()
     if selectedQuest > #quests then selectedQuest = 1 end
     if selectedBoss > #dungeon.bosses then selectedBoss = 1 end
 
+    if dungeon.questChainPage then
+        if selectedMode ~= "quests" then FDJ.modeBeforeQuestChain = selectedMode end
+        selectedMode = "quests"
+    elseif FDJ.modeBeforeQuestChain then
+        selectedMode = FDJ.modeBeforeQuestChain
+        FDJ.modeBeforeQuestChain = nil
+    end
     SetMode(selectedMode)
 end
 
@@ -878,13 +916,17 @@ end
 SelectDungeon = function(name)
     SyncMainState()
     if not FDJ.DB or not FDJ.DB[name] then return end
-    if FDJ.DB[name].previewOnly then return end
+    local hasMap = FDJ.DUNGEON_MAPS and FDJ.DUNGEON_MAPS[name] ~= nil
+    if FDJ.DB[name].previewOnly and not hasMap then return end
 
     ShowDungeonPage()
     selectedDungeon = name
     selectedBoss = 1
     selectedQuest = 1
     FDJ.autoSwitchedTrashLoot = nil
+    if #(FDJ.DB[name].bosses or {}) == 0 and #(FDJ.DB[name].quests or {}) > 0 then
+        selectedMode = "quests"
+    end
     if FDJ.SetBossSubTab then
         FDJ.SetBossSubTab("tactics")
     else
@@ -2139,14 +2181,17 @@ local function CreateMainFrame()
         self.text:SetTextColor(1.0, 0.85, 0.35)
     end)
     tacticsAnnounce:SetScript("OnClick", function(self)
+        SyncMainState()
         local now = GetTime and GetTime() or 0
         if FDJ.lastTacticsAnnounce and (now - FDJ.lastTacticsAnnounce < 3) then return end
         FDJ.lastTacticsAnnounce = now
 
-        local dungeon = FDJ.DB and FDJ.DB[selectedDungeon]
-        local boss = dungeon and dungeon.bosses and dungeon.bosses[selectedBoss]
+        local curDungeon = FDJ.selectedDungeon or selectedDungeon
+        local curBoss = FDJ.selectedBoss or selectedBoss or 1
+        local dungeon = FDJ.DB and FDJ.DB[curDungeon]
+        local boss = dungeon and dungeon.bosses and dungeon.bosses[curBoss]
         local bossName = boss and boss.name or "Boss"
-        local tactics = FDJ.BOSS_TACTICS and FDJ.BOSS_TACTICS[selectedDungeon] and FDJ.BOSS_TACTICS[selectedDungeon][bossName]
+        local tactics = FDJ.BOSS_TACTICS and FDJ.BOSS_TACTICS[curDungeon] and FDJ.BOSS_TACTICS[curDungeon][bossName]
         if not tactics then return end
 
         local inRaid = IsInRaid and IsInRaid()
@@ -2161,14 +2206,49 @@ local function CreateMainFrame()
             table.insert(lines, cleanOv)
         end
         if tactics.roleTips then
-            local roleParts = {}
-            if tactics.roleTips.tank then table.insert(roleParts, "T: " .. tactics.roleTips.tank:gsub("\n", " ")) end
-            if tactics.roleTips.healer then table.insert(roleParts, "H: " .. tactics.roleTips.healer:gsub("\n", " ")) end
-            if tactics.roleTips.dps then table.insert(roleParts, "DPS: " .. tactics.roleTips.dps:gsub("\n", " ")) end
-            local roleLine = table.concat(roleParts, " | ")
-            roleLine = roleLine:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|H.-|h(%[.-%])|h", "%1")
-            if #roleLine > 240 then roleLine = roleLine:sub(1, 237) .. "..." end
-            table.insert(lines, roleLine)
+            local tankTip, healerTip, meleeTip, rangedTip
+            if FDJ.ResolveRoleTips then
+                tankTip, healerTip, meleeTip, rangedTip = FDJ.ResolveRoleTips(tactics.roleTips)
+            else
+                tankTip = tactics.roleTips.tank
+                healerTip = tactics.roleTips.healer
+                meleeTip = tactics.roleTips.melee or tactics.roleTips.dps
+                rangedTip = tactics.roleTips.ranged
+            end
+            local function CleanRole(txt)
+                if not txt or txt == "" then return nil end
+                return txt:gsub("\n", " "):gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|H.-|h(%[.-%])|h", "%1")
+            end
+            local tClean = CleanRole(tankTip)
+            local hClean = CleanRole(healerTip)
+            local mClean = CleanRole(meleeTip)
+            local rClean = CleanRole(rangedTip)
+
+            local thParts = {}
+            if tClean then table.insert(thParts, "T: " .. tClean) end
+            if hClean then table.insert(thParts, "H: " .. hClean) end
+            local mrParts = {}
+            if mClean then table.insert(mrParts, "M: " .. mClean) end
+            if rClean then table.insert(mrParts, "R: " .. rClean) end
+
+            local allParts = {}
+            for _, p in ipairs(thParts) do table.insert(allParts, p) end
+            for _, p in ipairs(mrParts) do table.insert(allParts, p) end
+            local combined = table.concat(allParts, " | ")
+            if #combined <= 240 and #combined > 0 then
+                table.insert(lines, combined)
+            else
+                if #thParts > 0 then
+                    local l1 = table.concat(thParts, " | ")
+                    if #l1 > 240 then l1 = l1:sub(1, 237) .. "..." end
+                    table.insert(lines, l1)
+                end
+                if #mrParts > 0 then
+                    local l2 = table.concat(mrParts, " | ")
+                    if #l2 > 240 then l2 = l2:sub(1, 237) .. "..." end
+                    table.insert(lines, l2)
+                end
+            end
         end
 
         for _, msg in ipairs(lines) do
@@ -2239,7 +2319,9 @@ local function CreateMainFrame()
 
     frame.tacticsTankCard = MakeRoleTipCard(frame.bossTacticsContent, L("TANK") or "Tank", "Interface\\Icons\\INV_Shield_04", {0.35, 0.68, 1.0})
     frame.tacticsHealerCard = MakeRoleTipCard(frame.bossTacticsContent, L("HEALER") or "Healer", "Interface\\Icons\\Spell_Holy_Renew", {0.35, 1.0, 0.45})
-    frame.tacticsDpsCard = MakeRoleTipCard(frame.bossTacticsContent, L("DPS") or "DPS", "Interface\\Icons\\INV_Sword_27", {1.0, 0.38, 0.38})
+    frame.tacticsMeleeCard = MakeRoleTipCard(frame.bossTacticsContent, L("MELEE_DPS") or "Melee DPS", "Interface\\Icons\\INV_Sword_27", {1.0, 0.55, 0.38})
+    frame.tacticsRangedCard = MakeRoleTipCard(frame.bossTacticsContent, L("RANGED_DPS") or "Ranged DPS", "Interface\\Icons\\INV_Weapon_Bow_07", {0.88, 0.65, 1.0})
+    frame.tacticsDpsCard = frame.tacticsMeleeCard
 
     frame.tacticsAbilitiesHeader = frame.bossTacticsContent:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     frame.tacticsAbilitiesHeader:SetText(L("ABILITIES") or "Abilities")
@@ -2344,6 +2426,9 @@ local function CreateMainFrame()
 
     frame.hordeQuestButton = CreateFactionButton("Horde", -10, FDJ.HORDE_ICON)
     frame.allianceQuestButton = CreateFactionButton("Alliance", -66, FDJ.ALLIANCE_ICON)
+    if FDJ.CreateQuestTrackButton then
+        FDJ.CreateQuestTrackButton(frame, questLeft)
+    end
 
     local questScroll = CreateFrame(
         "ScrollFrame",
@@ -2438,6 +2523,12 @@ local function CreateMainFrame()
     frame.selectedQuestComplete:SetSize(24, 24)
     frame.selectedQuestComplete:SetPoint("TOPRIGHT", -16, -11)
     frame.selectedQuestComplete:Hide()
+
+    if FDJ.CreateTurnInButton then
+        frame.selectedQuestTurnIn = FDJ.CreateTurnInButton(questInset, 34)
+        frame.selectedQuestTurnIn:SetPoint("CENTER", frame.selectedQuestComplete, "CENTER", -2, -2)
+        frame.selectedQuestTurnIn:SetFrameLevel(questInset:GetFrameLevel() + 6)
+    end
 
     frame.questShareButton = CreateFrame("Button", nil, questInset, "BackdropTemplate")
     frame.questShareButton:SetSize(76, 24)
@@ -2668,6 +2759,10 @@ local function CreateMainFrame()
         if self.mapLocation then
             HideItemTooltip()
             HideComparisonTooltips()
+            if self.mapLocation.dungeon and FDJ.ShowQuestSpotOnDungeonMap then
+                FDJ.ShowQuestSpotOnDungeonMap(self.mapLocation)
+                return
+            end
             FDJ.MapMarkers.ShowRecordedLocationOnMap(self.mapLocation, self.mapLocation.label)
             return
         end
@@ -2730,6 +2825,48 @@ local function CreateMainFrame()
     end)
     frame.questMapButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
     frame.questMapButton:Hide()
+
+    do
+        local ok, button = pcall(CreateFrame, "Button", nil, frame.questDetailContent, "UIPanelButtonTemplate,InsecureActionButtonTemplate")
+        if ok and button then
+            frame.questTurninMapButton = button
+            frame.questTurninMapButton._fdjCanTarget = true
+        else
+            frame.questTurninMapButton = CreateFrame("Button", nil, frame.questDetailContent, "UIPanelButtonTemplate")
+            frame.questTurninMapButton._fdjCanTarget = false
+        end
+    end
+    frame.questTurninMapButton:SetSize(112, 24)
+    frame.questTurninMapButton:SetText(L("SHOW_TURN_IN") or L("SHOW_ON_MAP"))
+    frame.questTurninMapButton:RegisterForClicks("LeftButtonUp")
+    if frame.questTurninMapButton._fdjCanTarget then
+        frame.questTurninMapButton:SetAttribute("useOnKeyDown", false)
+    end
+    local function QuestTurninMapButtonOpenMap(self)
+        local loc = self.turninLocation
+        if loc and loc.dungeon and FDJ.ShowTurnInOnDungeonMap then
+            FDJ.ShowTurnInOnDungeonMap(loc.dungeon, loc, self.questTitle, self.questID)
+        elseif loc and FDJ.MapMarkers and FDJ.MapMarkers.ShowRecordedLocationOnMap then
+            FDJ.MapMarkers.ShowRecordedLocationOnMap(loc, loc.label)
+        end
+    end
+    if frame.questTurninMapButton._fdjCanTarget then
+        frame.questTurninMapButton:SetScript("PostClick", QuestTurninMapButtonOpenMap)
+    else
+        frame.questTurninMapButton:SetScript("OnClick", QuestTurninMapButtonOpenMap)
+    end
+    frame.questTurninMapButton:SetScript("OnEnter", function(self)
+        local loc = self.turninLocation
+        if FDJ.MapMarkers and FDJ.MapMarkers.ConfigureTargetAndMarkAction then
+            FDJ.MapMarkers.ConfigureTargetAndMarkAction(self, loc, true)
+        end
+        GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+        GameTooltip:SetText(L("SHOW_TURN_IN") or L("SHOW_ON_MAP"))
+        GameTooltip:AddLine(L("MAP_TOOLTIP"), 1, 1, 1, true)
+        GameTooltip:Show()
+    end)
+    frame.questTurninMapButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    frame.questTurninMapButton:Hide()
 
     frame.questChainButton = CreateFrame("Button", nil, frame.questDetailContent, "UIPanelButtonTemplate")
     frame.questChainButton:SetSize(132, 24)
