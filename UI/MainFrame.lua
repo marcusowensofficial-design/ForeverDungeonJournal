@@ -629,6 +629,7 @@ ApplyLocalization = function()
     if frame.tacticsHealerCard and frame.tacticsHealerCard.label then frame.tacticsHealerCard.label:SetText(L("HEALER") or "Healer") end
     if frame.tacticsMeleeCard and frame.tacticsMeleeCard.label then frame.tacticsMeleeCard.label:SetText(L("MELEE_DPS") or "Melee DPS") end
     if frame.tacticsRangedCard and frame.tacticsRangedCard.label then frame.tacticsRangedCard.label:SetText(L("RANGED_DPS") or "Ranged DPS") end
+    if frame.tacticsDpsCard and frame.tacticsDpsCard.label then frame.tacticsDpsCard.label:SetText(L("DPS") or "DPS") end
     if frame.questObjectiveHeader then frame.questObjectiveHeader:SetText(L("OBJECTIVE")) end
     if frame.questRequiredItemsHeader then frame.questRequiredItemsHeader:SetText(L("REQUIRED_ITEMS")) end
     if frame.questStartsHeader then frame.questStartsHeader:SetText(L("STARTS_AT")) end
@@ -2217,7 +2218,7 @@ local function CreateMainFrame()
             end
             local function CleanRole(txt)
                 if not txt or txt == "" then return nil end
-                return txt:gsub("\n", " "):gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|H.-|h(%[.-%])|h", "%1")
+                return txt:gsub("\n", " "):gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|H.-|h(%[.-%])|h", "%1"):gsub("|", "")
             end
             local tClean = CleanRole(tankTip)
             local hClean = CleanRole(healerTip)
@@ -2234,17 +2235,17 @@ local function CreateMainFrame()
             local allParts = {}
             for _, p in ipairs(thParts) do table.insert(allParts, p) end
             for _, p in ipairs(mrParts) do table.insert(allParts, p) end
-            local combined = table.concat(allParts, " | ")
+            local combined = table.concat(allParts, " • ")
             if #combined <= 240 and #combined > 0 then
                 table.insert(lines, combined)
             else
                 if #thParts > 0 then
-                    local l1 = table.concat(thParts, " | ")
+                    local l1 = table.concat(thParts, " • ")
                     if #l1 > 240 then l1 = l1:sub(1, 237) .. "..." end
                     table.insert(lines, l1)
                 end
                 if #mrParts > 0 then
-                    local l2 = table.concat(mrParts, " | ")
+                    local l2 = table.concat(mrParts, " • ")
                     if #l2 > 240 then l2 = l2:sub(1, 237) .. "..." end
                     table.insert(lines, l2)
                 end
@@ -2253,7 +2254,7 @@ local function CreateMainFrame()
 
         for _, msg in ipairs(lines) do
             if channel then
-                SendChatMessage(msg, channel)
+                SendChatMessage(msg:gsub("|", ""), channel)
             else
                 print("|cffffd100[Forever DJ]|r " .. msg)
             end
@@ -2321,7 +2322,7 @@ local function CreateMainFrame()
     frame.tacticsHealerCard = MakeRoleTipCard(frame.bossTacticsContent, L("HEALER") or "Healer", "Interface\\Icons\\Spell_Holy_Renew", {0.35, 1.0, 0.45})
     frame.tacticsMeleeCard = MakeRoleTipCard(frame.bossTacticsContent, L("MELEE_DPS") or "Melee DPS", "Interface\\Icons\\INV_Sword_27", {1.0, 0.55, 0.38})
     frame.tacticsRangedCard = MakeRoleTipCard(frame.bossTacticsContent, L("RANGED_DPS") or "Ranged DPS", "Interface\\Icons\\INV_Weapon_Bow_07", {0.88, 0.65, 1.0})
-    frame.tacticsDpsCard = frame.tacticsMeleeCard
+    frame.tacticsDpsCard = MakeRoleTipCard(frame.bossTacticsContent, L("DPS") or "DPS", "Interface\\Icons\\INV_Sword_27", {1.0, 0.65, 0.35})
 
     frame.tacticsAbilitiesHeader = frame.bossTacticsContent:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     frame.tacticsAbilitiesHeader:SetText(L("ABILITIES") or "Abilities")

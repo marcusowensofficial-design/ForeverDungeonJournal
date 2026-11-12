@@ -1,3 +1,6 @@
+-- Forever runs the modern (12.x) API, where these legacy globals no longer exist.
+-- Fall back to their C_ namespace equivalents so the code paths below still work.
+local GetItemCount = GetItemCount or (C_Item and C_Item.GetItemCount)
 local ADDON_NAME, FDJ = ...
 FDJ = FDJ or _G.ForeverDungeonJournal_NS
 
@@ -61,6 +64,7 @@ local DUNGEON_SEARCH_ALIASES = {
     ["Krol'dok Stronghold"] = { "kroldok", "krol'dok", "stronghold" },
     ["Shaper's Terrace"] = { "shapers", "shaper's terrace", "terrace" },
 }
+FDJ.DUNGEON_SEARCH_ALIASES = DUNGEON_SEARCH_ALIASES
 
 local function SearchText(value)
     local s = tostring(value or "")

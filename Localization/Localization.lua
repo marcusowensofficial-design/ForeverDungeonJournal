@@ -77,6 +77,14 @@ FDJ.Locales.enUS = {
     PROVIDED_ITEM = "Provided Item",
     SHOW_WHOLE_CHAIN = "Click to show the whole quest chain",
     OPEN_REQUIRED_CHAIN = "Open the required quest chain.",
+    CHAIN_BAR_ONE_STEP = "Quest chain: 1 step first",
+    CHAIN_BAR_STEPS = "Quest chain: %d steps first",
+    CHAIN_BAR_SHOW = "- click to show",
+    CHAIN_BAR_HIDE = "- click to hide",
+    CHAIN_BAR_HIDE_TIP = "Click to hide the quest chain.",
+    CHAIN_STEP_TIP = "Click to see where this step starts, what to do and where to turn it in.",
+    SHOW_OBJECTIVE_ON_MAP = "Show objective on map",
+    FIND_TARGET_ON_MAP = "Find %s",
     SHOW_GIVER_ON_MAP = "Show quest giver on map",
     MAP_TOOLTIP = "Opens the correct zone and marks the recorded quest-start location.",
     IN_DUNGEON = "In Dungeon",
@@ -339,6 +347,15 @@ FDJ.Locales.enUS = {
     MAP_LEGEND = "Map Legend",
     HIDE_LEGEND = "Hide Legend",
     MAP_LEGEND_TITLE = "Dungeon Landmarks",
+    YOUR_ROLE = "Your Role",
+    MY_ROLE = "My Role",
+    ALL_ROLES = "All Roles",
+    TRASH_TACTICS_TITLE = "Dungeon Trash & Route Hazards",
+    TRASH_TACTICS_OVERVIEW = "Trash packs drop valuable zone-wide bind-on-equip gear, rare recipes, and crafting materials. Coordinate crowd control, interrupt high-damage casters, and clear packs deliberately before engaging wandering patrols.",
+    TRASH_TIP_TANK = "Group multi-target trash packs tightly, turn cleaving mobs away from the party, and keep eyes on wandering patrols.",
+    TRASH_TIP_HEALER = "Conserve mana between pulls, dispel debilitating magic/curses/poisons promptly, and prioritize the tank during multi-pack pulls.",
+    TRASH_TIP_MELEE = "Watch enemy frontal cleaves, interrupt high-damage caster mobs, and focus marked kill targets.",
+    TRASH_TIP_RANGED = "Assist with crowd control (Polymorph/Trap/Fear), focus down priority casters, and spread out if mobs cast AoE.",
 }
 
 FDJ.Locales.deDE = {
@@ -410,6 +427,14 @@ FDJ.Locales.deDE = {
     PROVIDED_ITEM = "Bereitgestellter Gegenstand",
     SHOW_WHOLE_CHAIN = "Klicken, um die gesamte Questreihe anzuzeigen",
     OPEN_REQUIRED_CHAIN = "Benötigte Questreihe öffnen.",
+    CHAIN_BAR_ONE_STEP = "Questreihe: 1 Schritt vorher",
+    CHAIN_BAR_STEPS = "Questreihe: %d Schritte vorher",
+    CHAIN_BAR_SHOW = "- zum Anzeigen klicken",
+    CHAIN_BAR_HIDE = "- zum Ausblenden klicken",
+    CHAIN_BAR_HIDE_TIP = "Klicken, um die Questreihe auszublenden.",
+    CHAIN_STEP_TIP = "Klicken, um zu sehen, wo dieser Schritt beginnt, was zu tun ist und wo er abgegeben wird.",
+    SHOW_OBJECTIVE_ON_MAP = "Ziel auf Karte zeigen",
+    FIND_TARGET_ON_MAP = "%s finden",
     SHOW_GIVER_ON_MAP = "Queststart auf Karte anzeigen",
     MAP_TOOLTIP = "Öffnet das passende Gebiet und markiert den Startpunkt dieser Quest. Rechtsklick auf die Markierung entfernt sie.",
     IN_DUNGEON = "Im Dungeon",
@@ -630,6 +655,22 @@ FDJ.Locales.deDE = {
     TRACK_CLICK = "Klicken, um sie im Journal zu öffnen",
     TURN_IN_HERE = "Hier abgeben",
     TRACK_ACCEPT = "Klicken, um die Quest anzunehmen",
+    TANK = "Tank",
+    HEALER = "Heiler",
+    MELEE_DPS = "Nahkampf-DPS",
+    RANGED_DPS = "Fernkampf-DPS",
+    ROLE_TIPS = "Rollentipps",
+    ANNOUNCE_TACTICS = "Taktik ankündigen",
+    RETURN_TO_TIPS = "Zurück zu %s",
+    YOUR_ROLE = "Deine Rolle",
+    MY_ROLE = "Meine Rolle",
+    ALL_ROLES = "Alle Rollen",
+    TRASH_TACTICS_TITLE = "Dungeon-Trash & Gefahren",
+    TRASH_TACTICS_OVERVIEW = "Trash-Gegner lassen wertvolle zoneweite BoE-Ausrüstung, seltene Rezepte und Handwerksmaterialien fallen. Stimmt Gruppenkontrolle ab, unterbrecht gefährliche Zauberwirker und räumt Patrouillen rechtzeitig aus dem Weg.",
+    TRASH_TIP_TANK = "Zieht Gegnergruppen dicht zusammen, dreht spaltende Mobs von der Gruppe weg und behaltet wandernde Patrouillen im Auge.",
+    TRASH_TIP_HEALER = "Teilt Mana zwischen den Zügen ein, bannt Schwächungszauber zügig und priorisiert den Tank bei großen Gruppen.",
+    TRASH_TIP_MELEE = "Achtet auf frontale Spaltungen der Gegner, unterbrecht Zauberer und fokussiert markierte Primärziele.",
+    TRASH_TIP_RANGED = "Unterstützt mit Massenkontrolle (Verwandlung/Falle/Furcht), besiegt gefährliche Zauberer zuerst und verteilt euch bei Flächenschaden.",
 }
 
 local function NormalizeLanguage(value)
@@ -982,4 +1023,64 @@ function FDJ.LocalizeMapLocation(loc)
         label = FDJ.LocalizeFreeText(loc.label),
         detail = FDJ.LocalizeFreeText(loc.detail),
     }
+end
+
+-- Keys used by the wishlist, loot and map UIs that were missing from the
+-- tables above (L() returned the raw key, e.g. "OWNED", in game).
+do
+    local t = FDJ.Locales.enUS
+    if t then
+        for k, v in pairs({
+        SHARE_WISHLIST = "Share to Party",
+        ALL_DUNGEONS = "All Dungeons",
+        THIS_DUNGEON = "This Dungeon",
+        NO_WISHLIST_ITEMS = "No items on your wishlist yet.",
+        ADD_TO_WISHLIST = "Add to Wishlist",
+        REMOVE_FROM_WISHLIST = "Remove from Wishlist",
+        WISHLIST_TOOLTIP_DESC = "Track this item and receive in-game alerts when it drops.",
+        ITEM_REQ_LEVEL = "Requires Level %d",
+        OWNED = "[Owned]",
+        WEAPONS = "Weapons",
+        ARMOR = "Armor",
+        ACCESSORIES = "Accessories",
+        QUEST_ITEMS = "Quest Items",
+        NO_LOOT_MATCHES_FILTER = "No loot matches current filters.",
+        NO_LOOT_RECORDED = "No loot recorded.",
+        CLOSE = "Close",
+        WAYPOINT_CLEAR_TIP = "Left-click: open quest. Right-click: remove marker.",
+        WISHLIST_DROP = "Wishlist item acquired:",
+        }) do
+            if t[k] == nil then t[k] = v end
+        end
+    end
+end
+
+-- Keys used by the wishlist, loot and map UIs that were missing from the
+-- tables above (L() returned the raw key, e.g. "OWNED", in game).
+do
+    local t = FDJ.Locales.deDE
+    if t then
+        for k, v in pairs({
+        SHARE_WISHLIST = "Mit Gruppe teilen",
+        ALL_DUNGEONS = "Alle Dungeons",
+        THIS_DUNGEON = "Dieser Dungeon",
+        NO_WISHLIST_ITEMS = "Noch keine Gegenstände auf deiner Wunschliste.",
+        ADD_TO_WISHLIST = "Zur Wunschliste hinzufügen",
+        REMOVE_FROM_WISHLIST = "Von Wunschliste entfernen",
+        WISHLIST_TOOLTIP_DESC = "Verfolge diesen Gegenstand und erhalte eine Meldung im Spiel, wenn er droppt.",
+        ITEM_REQ_LEVEL = "Benötigt Stufe %d",
+        OWNED = "[Im Besitz]",
+        WEAPONS = "Waffen",
+        ARMOR = "Rüstung",
+        ACCESSORIES = "Schmuck",
+        QUEST_ITEMS = "Questgegenstände",
+        NO_LOOT_MATCHES_FILTER = "Keine Beute entspricht den aktuellen Filtern.",
+        NO_LOOT_RECORDED = "Keine Beute erfasst.",
+        CLOSE = "Schließen",
+        WAYPOINT_CLEAR_TIP = "Linksklick: Quest öffnen. Rechtsklick: Markierung entfernen.",
+        WISHLIST_DROP = "Wunschlisten-Gegenstand erhalten:",
+        }) do
+            if t[k] == nil then t[k] = v end
+        end
+    end
 end
