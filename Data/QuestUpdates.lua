@@ -241,6 +241,7 @@ do
     }
     FDJ.QUEST_PREREQ_DETAILS[1950] = {
         level = 30, requires = 30,
+        warning = "In order to get the phrase, walk just east of Magus Tirth, to the tower @ 79.6, 75.7. You'll find \"Plucky\" Johnson, the chicken, target him and type /beckon and hit enter, he'll turn human and you can get the phrase by right clicking human Magus Tirth and left clicking the dialogue box or text in the quest window. Then walk over to the turn in straight across from the tower to the left of the bleachers human Magus Tirth will now be standing for the quest turn in of Get the Scoop.",
         objective = "Find the phrase to Tirth's strongbox, then return to Tirth.",
         pickup = "Magus Tirth, Shimmering Flats, Thousand Needles",
         turnin = "Magus Tirth, Shimmering Flats, Thousand Needles",
