@@ -305,7 +305,7 @@ FDJ.DB = {
                 aliases = { "Lord Serpentis" },
                 loot = {
                     {6469, "Venomstrike", "Ranged, Bow", 3},
-                    {5970, "Serpent Gloves", "Hands, Cloth", 2},
+                    {5970, "Serpent Gloves", "Hands, Cloth", 3},
                     {10411, "Footpads of the Fang", "Feet, Leather", 3},
                     {6459, "Savage Trodders", "Feet, Mail", 3},
                     -- Seen dropping (Discord, Nov 2026); Wowhead Forever lists Lord Serpentis as its only source.
@@ -319,7 +319,7 @@ FDJ.DB = {
                 loot = {
                     {6630, "Seedcloud Buckler", "Off Hand, Shield", 3},
                     {6631, "Living Root", "Two-Hand, Staff", 3},
-                    {6629, "Sporid Cape", "Back, Cloth", 2},
+                    {6629, "Sporid Cape", "Back, Cloth", 3},
                 },
             },
             {
@@ -1083,7 +1083,7 @@ DB["Blackfathom Deeps"] = {
             name = "Lady Sarevess",
             npcID = 4831,
             aliases = {"Lady Sarevess"},
-            loot = {{888, "Naga Battle Gloves", "Hands, Leather", 3}, {3078, "Naga Heartpiercer", "Ranged, Bow", 2}, {11121, "Darkwater Talwar", "Main Hand, Sword", 2}, {252798, "Pattern: Brawler's Leather Hood", "Leatherworking Recipe", 3}, {251382, "Plans: Protector's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {251383, "Plans: Acolyte's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3}},
+            loot = {{888, "Naga Battle Gloves", "Hands, Leather", 3}, {3078, "Naga Heartpiercer", "Ranged, Bow", 3}, {11121, "Darkwater Talwar", "Main Hand, Sword", 3}, {252798, "Pattern: Brawler's Leather Hood", "Leatherworking Recipe", 3}, {251382, "Plans: Protector's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {251383, "Plans: Acolyte's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3}},
         },
         {
             name = "Gelihast",
@@ -1388,7 +1388,7 @@ DB["Shadowfang Keep"] = {
             npcID = 3914,
             aliases = {"Rethilgore"},
             loot = {
-                {5254, "Rugged Spaulders", "Shoulder, Leather", 2},
+                {5254, "Rugged Spaulders", "Shoulder, Leather", 3},
                 {273457, "Sorcerer Collar", "Neck", 3},
                 {273456, "Cell Keeper's Claws", "Main Hand, Fist Weapon", 3},
             },
@@ -1481,7 +1481,7 @@ DB["Shadowfang Keep"] = {
             npcID = 4627,
             aliases = {"Arugal's Voidwalker", "Arugal’s Voidwalker"},
             loot = {
-                {5943, "Rift Bracers", "Wrist, Mail", 3},
+                {5943, "Rift Bracers", "Wrist, Mail", 2},
             },
         },
         {
@@ -1940,7 +1940,7 @@ FDJ.DB["Excavation Site: Wetlands"] = {
                 {271667, "Ironwood Destroyer", "Two-Hand, Mace", 3},
                 {271670, "Curl of Life", "Neck", 3},
                 {271664, "Hornbeam Heft", "Main Hand, Axe", 3},
-                {271668, "Root Core of the Horror", "Quest Item", 1},
+                {270180, "Horrible Rootcore", "Quest Item", 1},
             },
         },
     },
@@ -2432,7 +2432,7 @@ FDJ.DB["Gnomeregan"] = {
                 {9491, "Hotshot Pilot's Gloves", "Hands, Cloth", 3, "Gnomeregan trash (rare)"},
                 {9509, "Petrolspill Leggings", "Legs, Leather", 3, "Gnomeregan trash (rare)"},
                 {9510, "Caverndeep Trudgers", "Feet, Mail", 3, "Gnomeregan trash (rare)"},
-                {9487, "Hi-tech Supergun", "Ranged, Gun", 3, "Gnomeregan trash (rare)"},
+                {9487, "Hi-Tech Supergun", "Ranged, Gun", 3, "Gnomeregan trash (rare)"},
                 {9485, "Vibroblade", "One-Hand, Axe", 3, "Gnomeregan trash (rare)"},
                 {9488, "Oscillating Power Hammer", "One-Hand, Mace", 3, "Gnomeregan trash (rare)"},
                 {9486, "Supercharger Battle Axe", "Two-Hand, Axe", 3, "Gnomeregan trash (rare)"},
@@ -7384,7 +7384,7 @@ FDJ.DB["Dire Maul: West"] = {
             loot = {
                 {18390, "Tanglemoss Leggings", "Legs, Leather", 3},
                 {18393, "Warpwood Binding", "Waist, Mail", 3},
-                {18352, "Petrified Bark Shield", "Off Hand, Shield", 2},
+                {18352, "Petrified Bark Shield", "Off Hand, Shield", 3},
                 -- Seen dropping (a player, Nov 2026).
                 {18353, "Stoneflower Staff", "Two-Hand, Staff", 3},
             },
@@ -7791,7 +7791,7 @@ FDJ.DB["Dire Maul: North"] = {
             aliases = {"Stomper Kreeg"},
             description = "Drunk ogre brewer; after the Tribute Run he sells the Gordok brews.",
             loot = {
-                {18425, "Kreeg's Mug", "Held In Off-hand", 2},
+                {18425, "Kreeg's Mug", "Held In Off-hand", 3},
             },
         },
         {
@@ -8350,7 +8350,7 @@ FDJ.DB["Stratholme: Undead"] = {
                 {18728, "Anastari Heirloom", "Neck", 3},
                 {18730, "Shadowy Laced Handwraps", "Hands, Cloth", 3},
                 {18729, "Screeching Bow", "Ranged, Bow", 3},
-                {13514, "Wail of the Banshee", "Miscellaneous", 3}, -- Wowhead Forever
+                {13514, "Wail of the Banshee", "Miscellaneous", 2}, -- Wowhead Forever
             },
         },
         {
@@ -9117,7 +9117,7 @@ FDJ.DB["Blackrock Depths"] = {
             loot = {
                 {11920, "Wraith Scythe", "Main Hand, Axe", 3},
                 {11921, "Impervious Giant", "Two-Hand, Mace", 3},
-                {11922, "Blood-etched Blade", "One-Hand, Dagger", 3},
+                {11922, "Blood-Etched Blade", "One-Hand, Dagger", 3},
                 {11926, "Deathdealer Breastplate", "Chest, Mail", 3},
                 {11927, "Legplates of the Eternal Guardian", "Legs, Plate", 3},
                 {11923, "The Hammer of Grace", "Main Hand, Mace", 3},

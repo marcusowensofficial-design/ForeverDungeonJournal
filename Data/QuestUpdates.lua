@@ -195,15 +195,43 @@ end
 -- END hordepaladin
 
 -- BEGIN ritualsofpower
--- Mage, Scarlet Monastery Library: Hidden Secrets -> Get the Scoop ->
--- Rituals of Power (the journal entry). Wowhead Forever quests 1949-1951.
+-- Mage, Scarlet Monastery Library: Journey to the Marsh -> Hidden Secrets ->
+-- Get the Scoop -> Rituals of Power (the journal entry). Wowhead Forever quests 1947, 1949-1951.
 do
     local TABETHA = { mapID = 1445, x = 0.460, y = 0.570, label = "Tabetha — Dustwallow Marsh", targetName = "Tabetha" }
     local TIRTH = { mapID = 1441, x = 0.782, y = 0.758, label = "Magus Tirth — Shimmering Flats", targetName = "Magus Tirth" }
     FDJ.QUEST_PREREQ_CHAINS[1951] = {
+        { id = 1947, name = "Journey to the Marsh" },
         { id = 1949, name = "Hidden Secrets" },
         { id = 1950, name = "Get the Scoop" },
     }
+    local step1 = {
+        level = 38, requires = 30,
+        objective = "Speak with Tabetha in Dustwallow Marsh.",
+        pickup = "Mage trainer in Orgrimmar (Deino), Undercity (Anastasia Hartwell), Thunder Bluff (Ursyn Ghull), Stormwind, or Ironforge",
+        description = "Talk to a Mage trainer in Orgrimmar, Undercity, Thunder Bluff, Stormwind, or Ironforge to get Journey to the Marsh, then travel to Tabetha in Dustwallow Marsh (46.0, 57.0) for Hidden Secrets.",
+        turnin = "Tabetha, Dustwallow Marsh",
+        turninMap = TABETHA,
+    }
+    FDJ.QUEST_PREREQ_DETAILS[1947] = step1
+    local function ApplyFactionText()
+        if type(UnitFactionGroup) ~= "function" then return end
+        local ok, faction = pcall(UnitFactionGroup, "player")
+        if not ok or (type(issecretvalue) == "function" and issecretvalue(faction)) then return end
+        if faction == "Horde" then
+            step1.pickup = "Mage trainer in Orgrimmar (Deino), Undercity (Anastasia Hartwell), or Thunder Bluff (Ursyn Ghull)"
+            step1.description = "Talk to your Mage trainer in Orgrimmar (Valley of Spirits), Undercity (Magic Quarter), or Thunder Bluff (Spirit Rise) to get Journey to the Marsh. Then fly to Brackenwall Village in Dustwallow Marsh and run to Tabetha's hut (46.0, 57.0) to pick up Hidden Secrets."
+        elseif faction == "Alliance" then
+            step1.pickup = "Mage trainer in Stormwind (Jennea Cannon / Elsharin) or Ironforge (Bink)"
+            step1.description = "Talk to your Mage trainer in Stormwind (Mage Quarter) or Ironforge (Hall of Mysteries) to get Journey to the Marsh. Then travel to Theramore Isle in Dustwallow Marsh and run west to Tabetha's hut (46.0, 57.0) to pick up Hidden Secrets."
+        end
+    end
+    ApplyFactionText()
+    if CreateFrame then
+        local f = CreateFrame("Frame")
+        f:RegisterEvent("PLAYER_LOGIN")
+        f:SetScript("OnEvent", ApplyFactionText)
+    end
     FDJ.QUEST_PREREQ_DETAILS[1949] = {
         level = 38, requires = 30,
         objective = "Speak with Magus Tirth in the Shimmering Flats.",
