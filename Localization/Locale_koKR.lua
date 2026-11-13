@@ -333,6 +333,7 @@ do
         CHAIN_BAR_SHOW = "- 클릭하여 표시",
         CHAIN_BAR_STEPS = "연계 퀘스트: 선행 %d단계",
         CHAIN_STEP_TIP = "이 단계의 시작 위치, 목표, 완료 위치를 보려면 클릭하세요.",
+        CHAIN_ACCEPT_ONLY = "(수락만 하면 됨)",
         DPS = "공격",
         DUNGEON_MAP = "던전 지도",
         DUNGEON_PREPARATION = "던전 준비 및 체크리스트",

@@ -1152,7 +1152,10 @@ RefreshQuestList = function()
                     end
 
                     local prefix = tostring(chainIndex) .. ". "
-                    if step.id and IsQuestFinished(step.id) then
+                    -- acceptOnly steps (Rig Wars) unlock the next step as soon
+                    -- as they are in the quest log; they need not be handed in.
+                    local acceptOnlyMet = step.acceptOnly and step.id and IsQuestInLog(step.id)
+                    if step.id and (IsQuestFinished(step.id) or acceptOnlyMet) then
                         if row.statusIcon then
                             row.statusIcon:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready")
                             row.statusIcon:SetTexCoord(0, 1, 0, 1)
@@ -1164,7 +1167,8 @@ RefreshQuestList = function()
                     else
                         row.text:SetTextColor(0.78, 0.74, 0.66)
                     end
-                    row.text:SetText(prefix .. QuestField(step.id, "name", step.name))
+                    local suffix = step.acceptOnly and ("  " .. L("CHAIN_ACCEPT_ONLY")) or ""
+                    row.text:SetText(prefix .. QuestField(step.id, "name", step.name) .. suffix)
 
                     -- Put the prerequisite tick literally beside its title.
                     -- Example: "1. Underground Map  ✓"

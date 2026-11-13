@@ -450,7 +450,8 @@ function FDJ.ChainStartsInside(quest, dungeonName, pendingOnly)
     if type(chain) ~= "table" or #chain == 0 then return nil end
     for _, step in ipairs(chain) do
         if type(step) == "table" and step.id ~= quest.id and not (pendingOnly and step.id
-            and not step.itemStep and FDJ.QuestTurnedIn and FDJ.QuestTurnedIn(step.id)) then
+            and not step.itemStep and ((FDJ.QuestTurnedIn and FDJ.QuestTurnedIn(step.id))
+                or (step.acceptOnly and FDJ.IsQuestInLog and FDJ.IsQuestInLog(step.id)))) then
             local details = (step.id and detailsMap[step.id]) or {}
             return details.startsInDungeon == true or FDJ.StartsInsideDungeon(details.pickup)
                 or FDJ.StartItemDropsIn(details, dungeonName)

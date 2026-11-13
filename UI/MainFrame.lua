@@ -2922,15 +2922,16 @@ local function CreateMainFrame()
         -- open the first incomplete prerequisite; if every step is complete,
         -- open the final prerequisite.
         local target = nil
+        -- acceptOnly steps count as done once they are in the log.
         for _, step in ipairs(chain) do
-            if step.id and IsQuestInLog(step.id) then
+            if step.id and not step.acceptOnly and IsQuestInLog(step.id) then
                 target = step
                 break
             end
         end
         if not target then
             for _, step in ipairs(chain) do
-                if not (step.id and IsQuestFinished(step.id)) then
+                if not (step.id and (IsQuestFinished(step.id) or (step.acceptOnly and IsQuestInLog(step.id)))) then
                     target = step
                     break
                 end

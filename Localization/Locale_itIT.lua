@@ -330,6 +330,7 @@ do
         CHAIN_BAR_SHOW = "- clicca per mostrare",
         CHAIN_BAR_STEPS = "Serie di missioni: prima %d passaggi",
         CHAIN_STEP_TIP = "Clicca per vedere dove inizia questo passaggio, cosa fare e dove consegnarlo.",
+        CHAIN_ACCEPT_ONLY = "(basta accettarla)",
         DPS = "DPS",
         DUNGEON_MAP = "Mappa della spedizione",
         DUNGEON_PREPARATION = "Preparazione spedizione e lista di controllo",

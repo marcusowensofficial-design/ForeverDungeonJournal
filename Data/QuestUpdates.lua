@@ -351,6 +351,10 @@ FDJ.QUEST_PREREQ_CHAINS[5724] = {
 }
 FDJ.QUEST_PREREQ_DETAILS[5722] = { level = 16, requires = 9, objective = "Find Maur Grimtotem's corpse inside Ragefire Chasm and search it for anything of interest.", pickup = "Rahauro, Elder Rise, Thunder Bluff", turnin = "Maur Grimtotem's corpse inside Ragefire Chasm. From the first major three-way junction, take the right-hand tunnel, follow it uphill toward the dead end, then enter the small side room on the left. Interact with Maur's corpse there.", map = { mapID = 1456, x = 0.7040, y = 0.3220, label = "Rahauro" } }
 FDJ.FOREVER_QUEST_XP_FALLBACK[5722] = 880
+-- The turn-in is Maur's corpse inside the dungeon: reuse the Ragefire Chasm
+-- map's Maur Grimtotem (Corpse) spot (DUNGEON_MAP_POIS), since the long
+-- turn-in text cannot be matched to an NPC name.
+FDJ.QUEST_PREREQ_DETAILS[5722].turninMap = { dungeon = "Ragefire Chasm", floor = 1, x = 0.520, y = 0.250, label = "Maur Grimtotem (Corpse)", targetName = "Maur Grimtotem", npc = "Maur Grimtotem" }
 FDJ.QUEST_PREREQ_CHAINS[1394] = {
     { id = 1149, name = "Test of Faith" },
     { id = 1150, name = "Test of Endurance" },

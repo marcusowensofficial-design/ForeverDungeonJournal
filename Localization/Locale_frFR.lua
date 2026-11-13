@@ -330,6 +330,7 @@ do
         CHAIN_BAR_SHOW = "- cliquer pour afficher",
         CHAIN_BAR_STEPS = "Suite de quêtes : %d étapes avant",
         CHAIN_STEP_TIP = "Cliquer pour voir où cette étape commence, quoi faire et où la rendre.",
+        CHAIN_ACCEPT_ONLY = "(à accepter seulement)",
         DPS = "DPS",
         DUNGEON_MAP = "Carte du donjon",
         DUNGEON_PREPARATION = "Préparation du donjon & liste de contrôle",

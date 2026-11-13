@@ -2016,7 +2016,8 @@ for _, dungeon in pairs(FDJ.DB or {}) do
             local chain = quest.id and FDJ.QUEST_PREREQ_CHAINS[quest.id]
             if chain then
                 for _, step in ipairs(chain) do
-                    if step.id and step.id ~= quest.id then steps[step.id] = true end
+                    -- standalone steps (Rig Wars) stay in the main list as well.
+                    if step.id and step.id ~= quest.id and not step.standalone then steps[step.id] = true end
                 end
             end
         end

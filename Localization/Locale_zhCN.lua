@@ -333,6 +333,7 @@ do
         CHAIN_BAR_SHOW = "- 点击显示",
         CHAIN_BAR_STEPS = "任务链：需先完成 %d 步",
         CHAIN_STEP_TIP = "点击查看此步骤的接取位置、目标与交付地点。",
+        CHAIN_ACCEPT_ONLY = "（接受即可）",
         DPS = "输出",
         DUNGEON_MAP = "地下城地图",
         DUNGEON_PREPARATION = "地下城准备与检查清单",

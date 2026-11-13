@@ -39,26 +39,20 @@ Goal: every quest and chain step says where it starts, where the objective is an
 
 ### 2. Chain steps still without a turn-in button
 
-Mostly NPCs standing inside a dungeon (BRD, LBRS, Stratholme, Alcaz Prison...). These need a spot on the dungeon map (`DUNGEON_MAPS[...].turnins`), not a world-map spot.
+Rechecked 12 Nov 2026. Most rows in the old table are covered now:
+- 373, 94890, 94973, 94980: Wowhead Forever turn-in spots (Data/QuestLocations.lua).
+- 5122 Aurius and 95647 Ardin Grassman: `turnins` pins on the Stratholme and Excavation Site maps.
+- 5722 Maur Grimtotem: `turninMap` points at the corpse spot on the Ragefire Chasm map.
 
-| Step | Turn-in |
-|---|---|
-| 373 | Baros Alexston, City Hall, Cathedral Square, Stormwind |
-| 4241 | Marshal Windsor |
-| 4264 | Marshal Windsor |
-| 4282 | Marshal Windsor |
-| 4341 | Kharan Mighthammer |
-| 4342 | Kharan Mighthammer |
-| 4742 | Vaelan (Scarshield Infiltrator), Lower Blackrock Spire |
-| 4981 | Bijou |
-| 5001 | Bijou, Lower Blackrock Spire |
-| 5122 | Aurius, Stratholme |
-| 5722 | Maur Grimtotem's corpse inside Ragefire Chasm. From the first major three-way junction, take the right-hand tu |
-| 7643 | Ancient Equine Spirit, Dire Maul |
-| 94890 | Sergeant Riftan, Farholde Keep, Riverglades |
-| 94973 | Kreza Darkthorn, Rog'mar, Riverglades (probably) |
-| 94980 | Alphonse Dumas, Farholde Keep, Riverglades (probably) |
-| 95647 | Ardin Grassman, inside Excavation Site: Wetlands |
+Still missing. Neither Wowhead Forever nor Wowhead Classic gives coordinates inside these dungeons, so each one needs a `/loc` reading in game:
+
+| Step | Turn-in | Needs |
+|---|---|---|
+| 4241, 4264, 4282 | Marshal Windsor (Detention Block) | `DUNGEON_MAPS["Blackrock Depths"].turnins`, floor 1 |
+| 4341, 4342 | Kharan Mighthammer (Detention Block) | same |
+| 4742 | Vaelan (Scarshield Infiltrator), LBRS | an LBRS map first |
+| 4981, 5001 | Bijou, LBRS | an LBRS map first |
+| 7643 | Ancient Equine Spirit, Dire Maul | `DUNGEON_MAPS["Dire Maul: East"]` or West, after finding which wing |
 
 ### Vague chain steps (short objective, no description yet)
 

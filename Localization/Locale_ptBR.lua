@@ -330,6 +330,7 @@ do
         CHAIN_BAR_SHOW = "- clique para mostrar",
         CHAIN_BAR_STEPS = "Cadeia de missões: %d etapas antes",
         CHAIN_STEP_TIP = "Clique para ver onde esta etapa começa, o que fazer e onde entregar.",
+        CHAIN_ACCEPT_ONLY = "(apenas aceitar)",
         DPS = "DPS",
         DUNGEON_MAP = "Mapa da masmorra",
         DUNGEON_PREPARATION = "Preparação da masmorra e lista",
