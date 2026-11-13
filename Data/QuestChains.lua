@@ -620,6 +620,7 @@ FDJ.QUEST_PREREQ_DETAILS = {
         objective = "Find Hammertoe Grez in Uldaman.",
         pickup = "Prospector Ryedol, Badlands",
         turnin = "Hammertoe Grez, Uldaman excavation (outside the instance)",
+        description = "This is his WoW Classic (2019) spot and he may have moved in Forever: if he is not here, check the Wowhead comments or coordinates. Enter the Uldaman excavation cave. In the big hall go forward (jump down or go around) and head down, deeper into the cave. Hug the wall on your right: just before the Dig One hall you make a 180-degree turn to the right, and Hammertoe Grez is there. Level ~36 elites stand along the way.",
     },
     [738] = {
         level = 38, requires = 30,
@@ -640,6 +641,7 @@ FDJ.QUEST_PREREQ_DETAILS = {
         objective = "Find Hammertoe's Amulet and return it to him in Uldaman.",
         pickup = "Hammertoe Grez, Uldaman excavation (outside the instance)",
         turnin = "Hammertoe Grez, Uldaman excavation (outside the instance)",
+        description = "This is his WoW Classic (2019) spot and he may have moved in Forever: if he is not here, check the Wowhead comments or coordinates. Enter the Uldaman excavation cave. In the big hall go forward (jump down or go around) and head down, deeper into the cave. Hug the wall on your right: just before the Dig One hall you make a 180-degree turn to the right, and Hammertoe Grez is there. Level ~36 elites stand along the way.",
     },
     [723] = {
         startsInDungeon = true,

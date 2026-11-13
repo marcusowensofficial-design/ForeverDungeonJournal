@@ -31,7 +31,7 @@ FDJ.QUEST_START_MAPS = {
     [6521] = { mapID = 1458, x = 0.5620, y = 0.9260, label = "Varimathras — Royal Quarter, Undercity" },
 
     -- The Stockade quest givers.
-    [386] = { mapID = 1433, x = 0.212, y = 0.466, label = "Guard Berton — Lakeshire" },
+    [386] = { mapID = 1433, x = 0.212, y = 0.466, label = "Guard Berton — Lakeshire", targetName = "Guard Berton", detail = "By the mailbox, left of the inn entrance in Lakeshire (21.2, 46.6)" },
     [377] = { mapID = 1431, x = 0.720, y = 0.478, label = "Councilman Millstipe — Darkshire" },
     [387] = { mapID = 1453, x = 0.518, y = 0.693, label = "Warden Thelwater — The Stockade", targetName = "Warden Thelwater" },
     [388] = { mapID = 1453, x = 0.744, y = 0.600, label = "Nikova Raskol — Old Town", targetName = "Nikova Raskol",
@@ -192,7 +192,7 @@ FDJ.QUEST_START_MAPS = {
     [95646] = { mapID = 1437, x = 0.562, y = 0.404, label = "Rethiel the Greenwarden — Wetlands", targetName = "Rethiel the Greenwarden" },
     [95682] = { mapID = 1437, x = 0.514, y = 0.592, label = "Deathstalker Agent — Wetlands", targetName = "Deathstalker Agent", detail = "Hills above the Dragonmaw camp near Thelgen Rock (uphill path starts at 52.3, 66.0 next to the meeting stone)" },
     [95697] = { mapID = 1454, x = 0.574, y = 0.534, label = "Borstan — Orgrimmar", targetName = "Borstan" },
-    [95772] = { mapID = 1433, x = 0.256, y = 0.464, label = "Dorin Songblade — Redridge Mountains", targetName = "Dorin Songblade" },
+    [95772] = { mapID = 1433, x = 0.256, y = 0.466, label = "Dorin Songblade — Redridge Mountains", targetName = "Dorin Songblade" },
     [96800] = { mapID = 1416, x = 0.094, y = 0.626, label = "Magus Olvek — Alterac Mountains", targetName = "Magus Olvek" },
     [96984] = { mapID = 1421, x = 0.684, y = 0.452, label = "Image of Archmage Modera — Silverpine Forest", targetName = "Image of Archmage Modera" },
     [96986] = { mapID = 1424, x = 0.6261, y = 0.2064, label = "Melisara — in front of the chapel, Tarren Mill", targetName = "Melisara" },
@@ -232,7 +232,7 @@ FDJ.QUEST_START_MAPS = {
     [8415] = { mapID = 1453, x = 0.494, y = 0.476, label = "Lord Grayson Shadowbreaker — Stormwind", targetName = "Lord Grayson Shadowbreaker" },
     [5281] = { mapID = 1423, x = 0.718, y = 0.544, label = "Caretaker Alen — Eastern Plaguelands", targetName = "Caretaker Alen" },
     [5961] = { mapID = 1458, x = 0.580, y = 0.916, label = "Lady Sylvanas Windrunner — Undercity", targetName = "Lady Sylvanas Windrunner" },
-    [722] = { mapID = 1418, x = 0.443, y = 0.120, label = "Hammertoe Grez — Uldaman excavation (outside the instance)", detail = "Hammertoe is in the outer excavation caves, before the instance portal" },
+    [722] = { mapID = 1418, x = 0.443, y = 0.120, label = "Hammertoe Grez — Uldaman excavation (outside the instance)", detail = "Outer excavation caves, before the instance portal. This is his WoW Classic (2019) spot and he may have moved in Forever: if he is not here, check the Wowhead comments or coordinates. Enter the Uldaman excavation cave. In the big hall go forward (jump down or go around) and head down, deeper into the cave. Hug the wall on your right: just before the Dig One hall you make a 180-degree turn to the right, and Hammertoe Grez is there. Level ~36 elites stand along the way." },
     -- Starter locations from the Forever starter-location guide (safety net).
     [132] = { mapID = 1433, x = 0.214, y = 0.454, label = "Wiley the Black — Redridge Mountains", targetName = "Wiley the Black", detail = "Wiley the Black: Lakeshire inn, Redridge Mountains" },
     [135] = { mapID = 1436, x = 0.563, y = 0.475, label = "Gryan Stoutmantle — Westfall", targetName = "Gryan Stoutmantle", detail = "Gryan Stoutmantle: Sentinel Hill, Westfall" },

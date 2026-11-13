@@ -33,13 +33,16 @@ Goal: every quest and chain step says where it starts, where the objective is an
 Settled 12 Nov 2026 (Wowhead Forever):
 - Archmage Tervosh: 66.0, 49.0, Theramore mage tower (Data/QuestMaps.lua).
 - Baros Alexston: 57.6, 47.8, City Hall next to the Argent Dawn building. 49.0, 30.2 is the fallback if he isn't there. Confirm in game which one is right.
+- Guard Berton: 21.2, 46.6, by the mailbox left of the Lakeshire inn entrance.
+- Dorin Songblade: 25.6, 46.6, Redridge.
+- Hammertoe Grez: walking directions added to A Sign of Hope / Amulet of Secrets (WoW Classic 2019 info, may have moved). Pins unchanged: journal 44.3, 12.0 vs Wowhead 37.9, 10.6. The directions' cave entrance (54.5, 57.8) still needs its map confirmed.
 
 Still to check:
 
+- Wiley the Black (Lakeshire): journal ~21.3 vs Wowhead ~26.5, with a Wowhead spawn at 21.4, 45.2.
+- Scout Galiaan (Westfall): small difference.
 - Alba Fairmoon (quest 92753): journal Sentinel Hill inn 52.6, 53.8 vs Wowhead 38.6, 83.6 (Westfall). She may move during her quests.
 - Thom Filch (quest 96403): journal 43.5, 52.0 (Hall of Thanes portal) vs Wowhead 32.4, 44.8 (Ironforge).
-- Lakeshire: Wiley the Black, Guard Berton and Dorin Songblade are all about 5 points west of Wowhead's spots (journal ~21.3 vs Wowhead ~26.5). Wowhead also lists a Wiley spawn at 21.4, 45.2, so this may be phasing rather than an error.
-- Small differences worth a glance: Hammertoe Grez (Badlands, 44.3, 12.0 vs 37.9, 10.6), Scout Galiaan (Westfall).
 
 ### 2. Chain steps still without a turn-in button
 
