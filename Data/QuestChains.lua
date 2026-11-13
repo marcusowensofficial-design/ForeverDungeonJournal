@@ -117,7 +117,7 @@ FDJ.QUEST_PREREQ_CHAINS = {
     -- Rig Wars only needs to be accepted/in progress to make Chief Engineer
     -- Scooty available; it does not need to be completed first.
     [2843] = {
-        { id = 2841, name = "Rig Wars" },
+        { id = 2841, name = "Rig Wars", standalone = true, acceptOnly = true }, -- also listed on its own (players looked for it); "(accept only)" in the chain list
         { id = 2842, name = "Chief Engineer Scooty" },
     },
 
@@ -569,6 +569,9 @@ FDJ.QUEST_PREREQ_CHAINS = {
     },
     [5125] = {
         { id = 5122, name = "The Medallion of Faith" },
+    },
+    [93404] = {
+        { id = 93594, name = "Word of the Woods", level = 43, requires = 35 },
     },
 }
 
@@ -1362,7 +1365,7 @@ FDJ.QUEST_PREREQ_DETAILS = {
         objective = "Speak with Eitrigg in Orgrimmar. When you have discussed matters with Eitrigg, seek council from Thrall. You recall having seen Eitrigg in Thrall's chamber.",
         pickup = "Warlord Goretooth, Badlands",
         turnin = "Thrall, Orgrimmar",
-        map = { mapID = 1418, x = 0.030, y = 0.476, label = "Warlord Goretooth — Badlands", targetName = "Warlord Goretooth" },
+        map = { mapID = 1418, x = 0.058, y = 0.474, label = "Warlord Goretooth — Badlands", targetName = "Warlord Goretooth" },
     },
     [4974] = {
         level = 60, requires = 55,
@@ -1920,7 +1923,8 @@ FDJ.QUEST_PREREQ_DETAILS = {
     },
 
     -- Gnomeregan prerequisite steps.
-    [2926] = { level = 27, requires = 20, objective = "Use the Empty Leaden Collection Phial on a living Irradiated Invader or Irradiated Pillager, then return the full phial to Ozzie Togglevolt.", pickup = "Ozzie Togglevolt, Kharanos, Dun Morogh", turnin = "Ozzie Togglevolt, Kharanos, Dun Morogh", description = "Required before The Only Cure is More Green Glow.", map = { mapID = 1426, x = 0.450, y = 0.490, label = "Ozzie Togglevolt — Kharanos", detail = "Start Gnogaine here" } },
+    [2926] = {
+        requiredItems = { {9284, "Full Leaden Collection Phial", 1, "Use the Vial on an Irradiated Invader just outside the instance", map = { mapID = 1426, x = 0.243, y = 0.398, label = "Irradiated Invaders — outside Gnomeregan", detail = "Use the Vial on an Irradiated Invader just outside the instance" }} }, level = 27, requires = 20, objective = "Use the Empty Leaden Collection Phial on a living Irradiated Invader or Irradiated Pillager, then return the full phial to Ozzie Togglevolt.", pickup = "Ozzie Togglevolt, Kharanos, Dun Morogh", turnin = "Ozzie Togglevolt, Kharanos, Dun Morogh", description = "Required before The Only Cure is More Green Glow.", map = { mapID = 1426, x = 0.450, y = 0.490, label = "Ozzie Togglevolt — Kharanos", detail = "Start Gnogaine here" } },
     [2841] = { level = 35, requires = 25, objective = "Accept Rig Wars from Nogg. You do not need to complete it before continuing to Chief Engineer Scooty.", pickup = "Nogg, Valley of Honor, Orgrimmar", turnin = "Nogg, Orgrimmar", description = "Rig Wars must be in progress to unlock the transporter chain in Forever.", note = "Accept Rig Wars first; completion is not required for Chief Engineer Scooty.", warning = "Accept Rig Wars before Chief Engineer Scooty. If Rig Wars disappears, abandon Chief Engineer Scooty and it will reappear.", map = { mapID = 1454, x = 0.760, y = 0.250, label = "Nogg — Valley of Honor, Orgrimmar", detail = "Accept Rig Wars here" } },
     [2842] = { level = 35, requires = 20, objective = "Speak with Scooty in Booty Bay.", pickup = "Sovik, Valley of Honor, Orgrimmar", turnin = "Scooty, Booty Bay, Stranglethorn Vale", description = "Required before Gnomer-gooooone!", map = { mapID = 1454, x = 0.756, y = 0.252, label = "Sovik — Valley of Honor, Orgrimmar", detail = "Start Chief Engineer Scooty here" } },
 
@@ -1968,7 +1972,7 @@ FDJ.QUEST_PREREQ_DETAILS = {
     [5727] = { level = 12, requires = 9, objective = "Speak with Neeru Fireblade in the Cleft of Shadow, then return to Thrall.", pickup = "Thrall, Valley of Wisdom, Orgrimmar", turnin = "Thrall, Valley of Wisdom, Orgrimmar", description = "Neeru is in the Cleft of Shadow near the Ragefire Chasm entrance." },
 
     [3765] = { level = 24, requires = 18, objective = "Travel to Gershala Nightwhisper in Auberdine, Darkshore.", pickup = "Argos Nightwhisper, The Park, Stormwind", turnin = "Gershala Nightwhisper, Auberdine, Darkshore", description = "Optional Alliance breadcrumb leading to Researching the Corruption.", map = { mapID = 1453, x = 0.363, y = 0.674, label = "Argos Nightwhisper — The Park", detail = "Argos Nightwhisper is in The Park, beside the moonwell area." } },
-    [1198] = { level = 24, requires = 18, objective = "Seek out Argent Guard Thaelrid inside Blackfathom Deeps.", pickup = "Dawnwatcher Shaedlass, Darnassus", turnin = "Argent Guard Thaelrid, inside Blackfathom Deeps", description = "Required before the Alliance version of Blackfathom Villainy.", map = { mapID = 1457, x = 0.550, y = 0.240, label = "Dawnwatcher Shaedlass — Darnassus", detail = "Start In Search of Thaelrid here" } },
+    [1198] = { level = 24, requires = 18, objective = "Seek out Argent Guard Thaelrid inside Blackfathom Deeps.", pickup = "Dawnwatcher Shaedlass, Darnassus", turnin = "Argent Guard Thaelrid, inside Blackfathom Deeps", description = "Optional lead-in to the Alliance version of Blackfathom Villainy: hand it in before accepting Blackfathom Villainy, or it can no longer be completed.", map = { mapID = 1457, x = 0.550, y = 0.240, label = "Dawnwatcher Shaedlass — Darnassus", detail = "Start In Search of Thaelrid here" } },
     [6564] = { level = 22, requires = 17, objective = "Bring the Damp Note to Je'neu Sancrea in Ashenvale.", pickup = "Damp Note", startItem = {16790, "Damp Note", 1, "Drops from Blackfathom Tide Priestess in the entrance tunnels leading to Blackfathom Deeps."}, turnin = "Je'neu Sancrea, Zoram'gar Outpost, Ashenvale" },
     -- Data Rescue punch card steps (item steps, not quests).
     [2930001] = { level = 30, requires = 25, objective = "Kill mobs in the outer Gnomeregan area until a White Punch Card drops.", pickup = "Caverndeep Pillagers, Caverndeep Invaders, Irradiated Invaders and Addled Lepers, outside the instance", turnin = "Keep the card for Matrix Punchograph 3005-A", description = "Random drop; you usually get it during your first clear of the outer area.", startItem = {9279, "White Punch Card", 1, "Random drop from mobs outside the Gnomeregan instance"}, map = { mapID = 1426, x = 0.243, y = 0.393, label = "Gnomeregan — outer area", detail = "White Punch Cards drop from the mobs here" } },
@@ -1977,6 +1981,21 @@ FDJ.QUEST_PREREQ_DETAILS = {
     [2930004] = { level = 30, requires = 25, objective = "Use Matrix Punchograph 3005-C with the Blue Punch Card to get a Red Punch Card.", pickup = "Matrix Punchograph 3005-C, upper platform of the Launch Bay with Electrocutioner 6000", turnin = "You receive a Red Punch Card", description = "On Electrocutioner 6000's platform.", startItem = {9281, "Red Punch Card", 1, "From Matrix Punchograph 3005-C"} },
     [2930005] = { level = 30, requires = 25, objective = "Use Matrix Punchograph 3005-D with the Red Punch Card to get the Prismatic Punch Card, then bring it to Master Mechanic Castpipe in Ironforge.", pickup = "Matrix Punchograph 3005-D, west side of the lower level of the Engineering Labs", turnin = "Master Mechanic Castpipe, Tinker Town, Ironforge", description = "Take the elevator down; the terminal is in the first passage on the right.", startItem = {9316, "Prismatic Punch Card", 1, "From Matrix Punchograph 3005-D"} },
 
+    [93594] = {
+        level = 43,
+        requires = 35,
+        -- Temporary instruction page until the complete hub-unlock chain is verified.
+        hubPlaceholder = true,
+        objective = "Need to unlock |cffffd36bShen'dralas|r quest hub.\nUpdating soon with full details",
+        -- Evenshade's Overlook: documented location of Mordent Evenshade.
+        -- This marks a known Shen'dralas questing landmark, not a verified
+        -- exact pickup NPC for Word of the Woods.
+        hubMap = {
+            mapID = 2652, x = 0.350, y = 0.466,
+            label = "Shen'dralas quest hub - Evenshade's Overlook",
+            detail = "Evenshade's Overlook, Shen'dralas (35.0, 46.6); temporary hub marker",
+        },
+    },
 }
 
 -- Pre-quests that also start a dungeon quest elsewhere in the journal reuse

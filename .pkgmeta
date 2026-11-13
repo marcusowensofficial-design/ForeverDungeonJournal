@@ -5,8 +5,10 @@ ignore:
   - .gitignore
   - tools
   - scratch
+  - _merge_preview
   - "*.py"
   - "*.html"
+  - "*.png"
   - __pycache__
   - ARCHITECTURE.md
   # Media no longer referenced by any Lua file (~26 MB)

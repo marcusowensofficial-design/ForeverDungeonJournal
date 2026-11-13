@@ -133,9 +133,18 @@ function FDJ.ItemIcon(id)
 end
 
 function FDJ.QualityColor(q)
+    local quality = q or 3
     if GetItemQualityColor then
-        local r, g, b = GetItemQualityColor(q or 3)
+        local r, g, b = GetItemQualityColor(quality)
         if r then return r, g, b end
+    end
+    if C_Item and C_Item.GetItemQualityColor then
+        local r, g, b = C_Item.GetItemQualityColor(quality)
+        if r then return r, g, b end
+    end
+    local fallback = ITEM_QUALITY_COLORS and ITEM_QUALITY_COLORS[quality]
+    if fallback and fallback.r then
+        return fallback.r, fallback.g, fallback.b
     end
     return 0, 0.44, 0.87
 end

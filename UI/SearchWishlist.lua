@@ -358,9 +358,12 @@ function FDJ.CreateGlobalSearchUI(frame)
     local function FindVisibleSearchItemButton(result)
         if not result or not result.itemID then return nil end
         if result.mode == "bosses" then
+            local targetID = tonumber(result.itemID)
             for _, row in ipairs(FDJ.lootRows or {}) do
-                if row:IsShown() and row.item and tonumber(row.item[1]) == tonumber(result.itemID) then
-                    return row, frame.lootScroll, frame.lootContent
+                if row:IsShown() and row.item and tonumber(row.item[1]) == targetID then
+                    if targetID ~= 0 or not result.itemName or row.item[2] == result.itemName then
+                        return row, frame.lootScroll, frame.lootContent
+                    end
                 end
             end
         elseif result.mode == "quests" then
@@ -435,8 +438,8 @@ function FDJ.CreateGlobalSearchUI(frame)
         end
     end
     FDJ.OpenSearchResult = OpenSearchResult
-    FDJ.FocusBossLootItem = function(itemID)
-        FocusSearchItem({ kind = "item", mode = "bosses", itemID = itemID })
+    FDJ.FocusBossLootItem = function(itemID, itemName)
+        FocusSearchItem({ kind = "item", mode = "bosses", itemID = itemID, itemName = itemName })
     end
 
     local function EnsureSearchRow(index)

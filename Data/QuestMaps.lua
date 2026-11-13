@@ -34,7 +34,8 @@ FDJ.QUEST_START_MAPS = {
     [386] = { mapID = 1433, x = 0.212, y = 0.466, label = "Guard Berton — Lakeshire" },
     [377] = { mapID = 1431, x = 0.720, y = 0.478, label = "Councilman Millstipe — Darkshire" },
     [387] = { mapID = 1453, x = 0.518, y = 0.693, label = "Warden Thelwater — The Stockade", targetName = "Warden Thelwater" },
-    [388] = { mapID = 1453, x = 0.736, y = 0.466, label = "Nikova Raskol — Old Town" },
+    [388] = { mapID = 1453, x = 0.744, y = 0.600, label = "Nikova Raskol — Old Town", targetName = "Nikova Raskol",
+        patrol = { { 0.734, 0.554 }, { 0.763, 0.602 }, { 0.761, 0.637 }, { 0.737, 0.622 }, { 0.722, 0.608 } } },
     [378] = { mapID = 1437, x = 0.496, y = 0.182, label = "Motley Garmason — Dun Modr" },
     [391] = { mapID = 1453, x = 0.518, y = 0.693, label = "Warden Thelwater — The Stockade", targetName = "Warden Thelwater" },
 
@@ -132,7 +133,7 @@ FDJ.QUEST_START_MAPS = {
     [4082] = { mapID = 1418, x = 0.040, y = 0.468, label = "KILL ON SIGHT poster — Kargath, Badlands", targetName = "KILL ON SIGHT" },
     [4123] = { mapID = 1428, x = 0.652, y = 0.238, label = "Maxwort Uberglint — Burning Steppes", targetName = "Maxwort Uberglint" },
     [4126] = { mapID = 1426, x = 0.468, y = 0.524, label = "Ragnar Thunderbrew — Dun Morogh", targetName = "Ragnar Thunderbrew" },
-    [4132] = { mapID = 1418, x = 0.030, y = 0.476, label = "Warlord Goretooth — Badlands", targetName = "Warlord Goretooth" },
+    [4132] = { mapID = 1418, x = 0.058, y = 0.474, label = "Warlord Goretooth — Badlands", targetName = "Warlord Goretooth" },
     [4134] = { mapID = 1418, x = 0.030, y = 0.476, label = "Shadowmage Vivian Lagrave — Badlands", targetName = "Shadowmage Vivian Lagrave" },
     [4136] = { mapID = 1428, x = 0.660, y = 0.220, label = "Yuka Screwspigot — Burning Steppes", targetName = "Yuka Screwspigot" },
     [4241] = { mapID = 1428, x = 0.846, y = 0.688, label = "Marshal Maxwell — Burning Steppes", targetName = "Marshal Maxwell" },
@@ -146,7 +147,7 @@ FDJ.QUEST_START_MAPS = {
     [4771] = { mapID = 1423, x = 0.737, y = 0.505, label = "Betina Bigglezink — Eastern Plaguelands", targetName = "Betina Bigglezink" },
     [4862] = { mapID = 1428, x = 0.658, y = 0.220, label = "Kibler — Burning Steppes", targetName = "Kibler" },
     [4866] = { mapID = 1428, x = 0.650, y = 0.236, label = "Ragged John — Burning Steppes", targetName = "Ragged John" },
-    [4903] = { mapID = 1418, x = 0.030, y = 0.476, label = "Warlord Goretooth — Badlands", targetName = "Warlord Goretooth" },
+    [4903] = { mapID = 1418, x = 0.058, y = 0.474, label = "Warlord Goretooth — Badlands", targetName = "Warlord Goretooth" },
     [4974] = { mapID = 1454, x = 0.320, y = 0.378, label = "Thrall — Orgrimmar", targetName = "Thrall" },
     [5081] = { mapID = 1428, x = 0.846, y = 0.688, label = "Marshal Maxwell — Burning Steppes", targetName = "Marshal Maxwell" },
     [5102] = { mapID = 1428, x = 0.846, y = 0.688, label = "Marshal Maxwell — Burning Steppes", targetName = "Marshal Maxwell" },
@@ -193,7 +194,7 @@ FDJ.QUEST_START_MAPS = {
     [95772] = { mapID = 1433, x = 0.256, y = 0.464, label = "Dorin Songblade — Redridge Mountains", targetName = "Dorin Songblade" },
     [96800] = { mapID = 1416, x = 0.094, y = 0.626, label = "Magus Olvek — Alterac Mountains", targetName = "Magus Olvek" },
     [96984] = { mapID = 1421, x = 0.684, y = 0.452, label = "Image of Archmage Modera — Silverpine Forest", targetName = "Image of Archmage Modera" },
-    [96986] = { mapID = 1424, x = 0.624, y = 0.204, label = "Melisara — Hillsbrad Foothills", targetName = "Melisara" },
+    [96986] = { mapID = 1424, x = 0.6261, y = 0.2064, label = "Melisara — in front of the chapel, Tarren Mill", targetName = "Melisara" },
     [96988] = { mapID = 1458, x = 0.458, y = 0.732, label = "Doctor Martin Felben — Undercity", targetName = "Doctor Martin Felben" },
     [98815] = { mapID = 1437, x = 0.084, y = 0.558, label = "James Halloran — Wetlands", targetName = "James Halloran" },
     [98823] = { mapID = 1456, x = 0.702, y = 0.336, label = "Bashana Runetotem — Thunder Bluff", targetName = "Bashana Runetotem", detail = "Turn in Elder Knowledge here (needs the Titan Relic from Relic Guardian in Excavation Site: Wetlands). She then offers Earthen Echo." },
@@ -262,6 +263,7 @@ FDJ.QUEST_START_MAPS = {
     [92750] = { mapID = 1453, x = 0.619, y = 0.306, label = "Sprite Jumpsprocket — Stormwind", targetName = "Sprite Jumpsprocket", detail = "Sprite Jumpsprocket: Dwarven District, Stormwind" },
     [92751] = { mapID = 1453, x = 0.803, y = 0.701, label = "Jasper Fel — Stormwind", targetName = "Jasper Fel", detail = "Jasper Fel: SI:7, Old Town, Stormwind" },
     [92752] = { mapID = 1453, x = 0.619, y = 0.306, label = "Sprite Jumpsprocket — Stormwind", targetName = "Sprite Jumpsprocket", detail = "Sprite Jumpsprocket: Dwarven District, Stormwind" },
+    [96776] = { mapID = 1412, x = 0.338, y = 0.237, label = "Olana Brighthoof - Skywatcher Plateau, Mulgore", targetName = "Olana Brighthoof", detail = "Olana Brighthoof: Camp Gev'rek, Skywatcher Plateau, Mulgore (33.8, 23.7)" },
 }
 
 -- BEGIN turninspots
@@ -367,7 +369,13 @@ FDJ.MAP_QUEST_PINS = {
         } },
     },
     ["Excavation Site: Wetlands"] = {
-        { floor = 1, x = 0.440, y = 0.580, spots = {
+        { floor = 1, x = 0.262, y = 0.668, spots = {
+            { name = "Ardin Grassman", quests = {
+                { id = 95647, name = "Lost in the Thicket Things", dungeon = "Excavation Site: Wetlands", main = 95809, acts = { "end" } },
+                { id = 95809, name = "Heartwoven", dungeon = "Excavation Site: Wetlands", acts = { "start" } },
+            } },
+        } },
+        { floor = 1, x = 0.074, y = 0.497, spots = {
             { name = "Daewyn Songblade", quests = {
                 { id = 95772, name = "Songblade Search", dungeon = "Excavation Site: Wetlands", acts = { "end" } },
                 { id = 95795, name = "Fallen in the Fen", dungeon = "Excavation Site: Wetlands", acts = { "start" } },

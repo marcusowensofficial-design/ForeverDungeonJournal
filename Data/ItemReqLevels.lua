@@ -1524,4 +1524,43 @@ FDJ.ITEM_REQ_LEVEL = {
     [251354] = 0, -- Plans: Crusader's Chain Helm (Roogug)
     [253986] = 0, -- Pattern: Filigreed Shining Circlet (Aggem Thorncurse)
     [251350] = 0, -- Plans: Veteran's Chain Helm (Overlord Ramtusk)
+
+    -- Krol'dok Stronghold (verified WoW Forever)
+    [271721] = 0,  -- Krol'dok Ogre Key
+    [274995] = 39, -- Slavecrusher Scepter
+    [274996] = 39, -- Resistance Breaker Spaulder
+    [274997] = 39, -- Chain of Binding
+    [274998] = 40, -- Shadowlight Athame
+    [274999] = 40, -- Shadecaster's Leggings
+    [275000] = 40, -- Zarmok's Plated Signet
+    [275001] = 40, -- Bloodied Gutslicer
+    [275002] = 40, -- War Handler's Gaze
+    [275003] = 40, -- Worgbinder's Treads
+    [275004] = 41, -- Chain of the Corruptor
+    [275005] = 41, -- Krol'dok Warplate Chest
+    [275006] = 41, -- Krol'dok Warplate Helmet
+    [275008] = 42, -- Mugg's Crosser
+    [287008] = 40, -- Ogre Magi's Mantle
+    [287012] = 40, -- Krol'dok Warplate Gauntlets
+    [287013] = 41, -- Krol'dok Warplate Legplates
+    [287014] = 41, -- Krol'dok Warplate Pauldrons
+
+    -- Alcaz Prison / Blackmaw Hold / Shaper's Terrace (verified WoW Forever)
+    [276733] = 47, -- Grips of Control
+    [276735] = 47, -- Tidesong Wand
+    [276739] = 49, -- Cutthroat Chestguard
+    [276744] = 50, -- Zarla's Snack Pouch
+    [276745] = 50, -- Beastbond Robe
+    [276746] = 50, -- Defias Enforcer's Legguards
+    [280056] = 54, -- Flameslash Crescent
+    [280057] = 54, -- Robes of Dark Summons
+    [280058] = 54, -- Impish Chain Hood
+    [280060] = 55, -- Lucky Shovelnose Tuft
+    [280065] = 56, -- Behemoth Bones
+    [280066] = 56, -- Trousers of the Ebon Giant
+    [280069] = 56, -- Shamanic Wristguards
+    [280070] = 56, -- Veilpiercer Girdle
+    [280073] = 56, -- Burnished Pridescales
+    [280075] = 57, -- Bleak Eye Shoulderplates
+    [287036] = 54, -- Satyr's Touch
 }

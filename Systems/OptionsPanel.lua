@@ -33,17 +33,27 @@ openButton:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -20)
 openButton:SetText("Open Dungeon Journal")
 openButton:SetScript("OnClick", OpenJournal)
 
+local settingsButton = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
+settingsButton:SetSize(160, 24)
+settingsButton:SetPoint("LEFT", openButton, "RIGHT", 10, 0)
+settingsButton:SetText("Journal Settings")
+settingsButton:SetScript("OnClick", function()
+    if FDJ and type(FDJ.ToggleSettingsPanel) == "function" then
+        FDJ.ToggleSettingsPanel()
+    end
+end)
+
 local instructionsTitle = panel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 instructionsTitle:SetPoint("TOPLEFT", openButton, "BOTTOMLEFT", 0, -22)
 instructionsTitle:SetText("Quick commands")
 
 local commandOpen = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 commandOpen:SetPoint("TOPLEFT", instructionsTitle, "BOTTOMLEFT", 0, -8)
-commandOpen:SetText("/dj  -  Open or close the Dungeon Journal")
+commandOpen:SetText("/fj  (or /fdj, /dj)  -  Open or close the Dungeon Journal")
 
 local commandMinimap = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 commandMinimap:SetPoint("TOPLEFT", commandOpen, "BOTTOMLEFT", 0, -6)
-commandMinimap:SetText("/dj minimap  -  Show the minimap button")
+commandMinimap:SetText("/fj minimap  -  Toggle or show the minimap button")
 
 local keybindTitle = panel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 keybindTitle:SetPoint("TOPLEFT", commandMinimap, "BOTTOMLEFT", 0, -24)
