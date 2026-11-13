@@ -30,8 +30,12 @@ Goal: every quest and chain step says where it starts, where the objective is an
 
 ### 1. Check in game (`/loc`)
 
-- Baros Alexston (Stormwind): recorded at 53.6, 65.2 and 57.7, 47.9. Wowhead's Stormwind coordinates don't apply.
-- Archmage Tervosh (quest 7070): journal 45.2, 24.4 vs Wowhead 59.6, 41.2 (Dustwallow Marsh).
+Settled 12 Nov 2026 (Wowhead Forever):
+- Archmage Tervosh: 66.0, 49.0, Theramore mage tower (Data/QuestMaps.lua).
+- Baros Alexston: 57.6, 47.8, City Hall next to the Argent Dawn building. 49.0, 30.2 is the fallback if he isn't there. Confirm in game which one is right.
+
+Still to check:
+
 - Alba Fairmoon (quest 92753): journal Sentinel Hill inn 52.6, 53.8 vs Wowhead 38.6, 83.6 (Westfall). She may move during her quests.
 - Thom Filch (quest 96403): journal 43.5, 52.0 (Hall of Thanes portal) vs Wowhead 32.4, 44.8 (Ironforge).
 - Lakeshire: Wiley the Black, Guard Berton and Dorin Songblade are all about 5 points west of Wowhead's spots (journal ~21.3 vs Wowhead ~26.5). Wowhead also lists a Wiley spawn at 21.4, 45.2, so this may be phasing rather than an error.

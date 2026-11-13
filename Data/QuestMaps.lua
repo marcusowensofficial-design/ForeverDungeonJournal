@@ -178,7 +178,8 @@ FDJ.QUEST_START_MAPS = {
     [7065] = { mapID = 1443, x = 0.638, y = 0.106, label = "Keeper Marandis — Desolace", targetName = "Keeper Marandis" },
     [7067] = { mapID = 1443, x = 0.434, y = 0.848, label = "Centaur Pariah — Desolace", targetName = "Centaur Pariah" },
     [7068] = { mapID = 1454, x = 0.388, y = 0.854, label = "Uthel'nay — Orgrimmar", targetName = "Uthel'nay" },
-    [7070] = { mapID = 1445, x = 0.452, y = 0.244, label = "Archmage Tervosh — Dustwallow Marsh", targetName = "Archmage Tervosh" },
+    -- Wowhead Forever (confirmed Nov 2026): Theramore Isle mage tower.
+    [7070] = { mapID = 1445, x = 0.660, y = 0.490, label = "Archmage Tervosh — Theramore mage tower, Dustwallow Marsh", targetName = "Archmage Tervosh", detail = "Centre of Theramore Isle, in the mage tower (66.0, 49.0)" },
     [7441] = { mapID = 1444, x = 0.768, y = 0.374, label = "Azj'Tordin — Feralas", targetName = "Azj'Tordin" },
     [7481] = { mapID = 1444, x = 0.744, y = 0.440, label = "Sage Korolusk — Feralas", targetName = "Sage Korolusk" },
     [7482] = { mapID = 1444, x = 0.310, y = 0.442, label = "Scholar Runethorn — Feralas", targetName = "Scholar Runethorn" },
@@ -276,7 +277,10 @@ FDJ.TURNIN_SPOTS = {
     { mapID = 1453, x = 0.562, y = 0.540, label = "Orphan Matron Nightingale — Cathedral Square, Stormwind", targetName = "Orphan Matron Nightingale" },
     { mapID = 1458, x = 0.733, y = 0.326, label = "Oran Snakewrithe — Magic Quarter, Undercity", targetName = "Oran Snakewrithe" },
     -- The Deadmines
-    { mapID = 1453, x = 0.536, y = 0.652, label = "Baros Alexston — City Hall, Cathedral Square, Stormwind", targetName = "Baros Alexston" },
+    -- City Hall is east/north-east of the Cathedral, next to the Argent Dawn
+    -- building. Wowhead Forever also lists a spawn at 49.0, 30.2 (fallback
+    -- until confirmed in game).
+    { mapID = 1453, x = 0.576, y = 0.478, label = "Baros Alexston — City Hall, Cathedral Square, Stormwind", targetName = "Baros Alexston", detail = "City Hall, east of the Cathedral next to the Argent Dawn building (57.6, 47.8). Not there? Check 49.0, 30.2." },
     { mapID = 1436, x = 0.526, y = 0.538, label = "Alba Fairmoon — Sentinel Hill inn, Westfall", targetName = "Alba Fairmoon" },
     -- Excavation Site: Wetlands
     { mapID = 1437, x = 0.119, y = 0.588, label = "Caitlin Grassman — Menethil Harbor, Wetlands", targetName = "Caitlin Grassman" },

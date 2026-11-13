@@ -2000,6 +2000,20 @@ FDJ.QUEST_PREREQ_DETAILS = {
 
 -- Pre-quests that also start a dungeon quest elsewhere in the journal reuse
 -- that quest's giver location for their Show on Map button.
+-- Baros Alexston (City Hall): the hand-checked spot, so the Wowhead Forever
+-- spawn at 49.0, 30.2 (Data/QuestLocations.lua) is not used for these steps.
+do
+    local baros
+    for _, spot in ipairs(FDJ.TURNIN_SPOTS or {}) do
+        if spot.targetName == "Baros Alexston" then baros = spot break end
+    end
+    local details = FDJ.QUEST_PREREQ_DETAILS
+    if baros and details then
+        if details[373] then details[373].turninMap = baros end -- The Unsent Letter
+        if details[389] then details[389].map = details[389].map or baros end -- Bazil Thredd
+    end
+end
+
 for id, details in pairs(FDJ.QUEST_PREREQ_DETAILS) do
     if not details.map and FDJ.QUEST_START_MAPS and FDJ.QUEST_START_MAPS[id] then
         details.map = FDJ.QUEST_START_MAPS[id]
