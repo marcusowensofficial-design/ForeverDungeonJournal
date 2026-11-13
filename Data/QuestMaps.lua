@@ -8,7 +8,7 @@ FDJ.QUEST_START_MAPS = {
     -- Hall of Thanes quest givers.
     [96394] = { mapID = 1455, x = 0.333, y = 0.481, label = "Afadra Dunwall — top of Old Ironforge", targetName = "Afadra Dunwall", detail = "Top of Old Ironforge, outside the dungeon" },
     [96393] = { mapID = 1426, x = 0.647, y = 0.584, label = "Earthseer Farsen — Gol'Bolar Quarry, Dun Morogh", targetName = "Earthseer Farsen" },
-    [96403] = { mapID = 1455, x = 0.435, y = 0.520, label = "Thom Filch — Hall of Thanes portal, Ironforge", targetName = "Thom Filch" },
+    [96403] = { mapID = 1455, x = 0.326, y = 0.446, label = "Thom Filch — Hall of Thanes portal, Ironforge", targetName = "Thom Filch", detail = "Just across the short bridge in front of the Hall of Thanes portal, tucked behind a column (about 32.6, 44.6)" },
 
     -- Ruins of Lordaeron quest givers / entrance.
     [92401] = { mapID = 1421, x = 0.4450, y = 0.4300, label = "Tabitha Heartweaver — The Sepulcher" },
@@ -234,7 +234,7 @@ FDJ.QUEST_START_MAPS = {
     [5961] = { mapID = 1458, x = 0.580, y = 0.916, label = "Lady Sylvanas Windrunner — Undercity", targetName = "Lady Sylvanas Windrunner" },
     [722] = { mapID = 1418, x = 0.443, y = 0.120, label = "Hammertoe Grez — Uldaman excavation (outside the instance)", detail = "Outer excavation caves, before the instance portal. This is his WoW Classic (2019) spot and he may have moved in Forever: if he is not here, check the Wowhead comments or coordinates. Enter the Uldaman excavation cave. In the big hall go forward (jump down or go around) and head down, deeper into the cave. Hug the wall on your right: just before the Dig One hall you make a 180-degree turn to the right, and Hammertoe Grez is there. Level ~36 elites stand along the way." },
     -- Starter locations from the Forever starter-location guide (safety net).
-    [132] = { mapID = 1433, x = 0.214, y = 0.454, label = "Wiley the Black — Redridge Mountains", targetName = "Wiley the Black", detail = "Wiley the Black: Lakeshire inn, Redridge Mountains" },
+    [132] = { mapID = 1433, x = 0.214, y = 0.452, label = "Wiley the Black — Lakeshire, Redridge Mountains", targetName = "Wiley the Black", detail = "He moves between the Lakeshire buildings: 21.4, 45.2 or 26.6, 45.2" },
     [135] = { mapID = 1436, x = 0.563, y = 0.475, label = "Gryan Stoutmantle — Westfall", targetName = "Gryan Stoutmantle", detail = "Gryan Stoutmantle: Sentinel Hill, Westfall" },
     [141] = { mapID = 1453, x = 0.783, y = 0.707, label = "Master Mathias Shaw — Stormwind", targetName = "Master Mathias Shaw", detail = "Master Mathias Shaw: SI:7, Old Town, Stormwind" },
     [142] = { mapID = 1436, x = 0.563, y = 0.475, label = "Gryan Stoutmantle — Westfall", targetName = "Gryan Stoutmantle", detail = "Gryan Stoutmantle: Sentinel Hill, Westfall" },
@@ -281,7 +281,7 @@ FDJ.TURNIN_SPOTS = {
     -- building. Wowhead Forever also lists a spawn at 49.0, 30.2 (fallback
     -- until confirmed in game).
     { mapID = 1453, x = 0.576, y = 0.478, label = "Baros Alexston — City Hall, Cathedral Square, Stormwind", targetName = "Baros Alexston", detail = "City Hall, east of the Cathedral next to the Argent Dawn building (57.6, 47.8). Not there? Check 49.0, 30.2." },
-    { mapID = 1436, x = 0.526, y = 0.538, label = "Alba Fairmoon — Sentinel Hill inn, Westfall", targetName = "Alba Fairmoon" },
+    { mapID = 1436, x = 0.524, y = 0.530, label = "Alba Fairmoon — Sentinel Hill inn, Westfall", targetName = "Alba Fairmoon", detail = "Inside the Sentinel Hill inn (52.4, 53.0); she may stand at 52.6, 53.2 during her quests" },
     -- Excavation Site: Wetlands
     { mapID = 1437, x = 0.119, y = 0.588, label = "Caitlin Grassman — Menethil Harbor, Wetlands", targetName = "Caitlin Grassman" },
     { mapID = 1455, x = 0.772, y = 0.118, label = "High Explorer Magellas — Hall of Explorers, Ironforge", targetName = "High Explorer Magellas" },
