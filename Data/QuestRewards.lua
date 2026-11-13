@@ -203,9 +203,4 @@ FDJ.PREREQ_REWARD_MONEY_FALLBACK = {
     [276] = 1950,   -- Tramping Paws (Horrors in the Highland prereq 2)
     [277] = 2100,   -- Fire Taboo (Horrors in the Highland prereq 3)
     [275] = 2450,   -- Blisters on The Land (Horrors in the Highland prereq 4)
-    [98823] = 6000,
-    [463] = 250,
-    [276] = 600,
-    [277] = 700,
-    [275] = 850,
 }

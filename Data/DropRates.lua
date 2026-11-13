@@ -68,7 +68,6 @@ FDJ.DROP_RATES = {
     -- --------------------------------------------------------
     [1482]  = "0.2%", -- Shadowfang (World Drop)
     [1935]  = "0.3%", -- Assassin's Blade (World Drop)
-    [6341]  = "25%",  -- Robes of Arugal
     [6392]  = "25%",  -- Belt of Arugal
     [3748]  = "25%",  -- Feline Mantle
     [6320]  = "25%",  -- Commander's Crest
@@ -77,7 +76,7 @@ FDJ.DROP_RATES = {
     [1292]  = "25%",  -- Butcher's Cleaver
     [6319]  = "25%",  -- Baron's Scepter
     [6323]  = "25%",  -- Baron's Choker
-    [6324]  = "25%",  -- Robes of the Shadowfang
+    [6324]  = "25%",  -- Robes of Arugal
     [6331]  = "25%",  -- Gilded Buckler
     [6332]  = "25%",  -- Black Wolf Bracers
     [6335]  = "25%",  -- Fenrus' Hide

@@ -342,7 +342,8 @@ SlashCmdList.FOREVERDUNGEONJOURNAL = function(msg)
 
     local langArg = msg:match("^lang%s+(%S+)$") or msg:match("^language%s+(%S+)$")
     if langArg then
-        local active, saved = FDJ.SetLanguage and FDJ.SetLanguage(langArg)
+        local active, saved
+        if FDJ.SetLanguage then active, saved = FDJ.SetLanguage(langArg) end
         if FDJ.ApplyLocalization then FDJ.ApplyLocalization() end
         local frame = FDJ.frame or _G["ForeverDungeonJournalFrame"]
         if frame then
@@ -737,7 +738,8 @@ FDJ.events:SetScript("OnEvent", function(_, event, arg1, arg2, arg3, arg4, arg5,
     end
 
     if event == "PLAYER_ENTERING_WORLD" then
-        local inInstance, instanceType = IsInInstance and IsInInstance()
+        local inInstance, instanceType
+        if IsInInstance then inInstance, instanceType = IsInInstance() end
         local currentMapID = C_Map and C_Map.GetBestMapForUnit and C_Map.GetBestMapForUnit("player")
         if not inInstance or instanceType == "none" then
             if FDJ.ResetDefeatedBosses then FDJ.ResetDefeatedBosses() end

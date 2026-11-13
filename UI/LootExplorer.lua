@@ -516,7 +516,8 @@ local function ResolveItemSlotAndQuality(itemID, rawSlot, rawQuality)
     end
 
     if not rawQuality and hasPositiveID then
-        local _, _, liveQual = FDJ.ItemInfo and FDJ.ItemInfo(itemID)
+        local _, _, liveQual
+        if FDJ.ItemInfo then _, _, liveQual = FDJ.ItemInfo(itemID) end
         if liveQual then rawQuality = liveQual end
     end
 
@@ -2383,7 +2384,8 @@ local function GetOrCreateLootExplorerRow(frame, i)
             if FDJ.ShowItemTooltip then
                 FDJ.ShowItemTooltip(self)
             elseif self.itemData.itemID > 0 then
-                local _, liveLink = FDJ.ItemInfo and FDJ.ItemInfo(self.itemData.itemID)
+                local _, liveLink
+                if FDJ.ItemInfo then _, liveLink = FDJ.ItemInfo(self.itemData.itemID) end
                 GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
                 GameTooltip:SetHyperlink(liveLink or ("item:" .. tostring(self.itemData.itemID)))
                 GameTooltip:Show()

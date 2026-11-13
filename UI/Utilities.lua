@@ -165,7 +165,8 @@ function FDJ.GetAuthoritativeItemLink(itemID, fallbackName, fallbackQuality)
     itemID = tonumber(itemID)
     if not itemID then return nil end
 
-    local _, liveLink = FDJ.ItemInfo and FDJ.ItemInfo(itemID)
+    local _, liveLink
+    if FDJ.ItemInfo then _, liveLink = FDJ.ItemInfo(itemID) end
     if liveLink and liveLink ~= "" and liveLink:find("|Hitem:") then
         return liveLink
     end
@@ -228,7 +229,8 @@ function FDJ.HandleModifiedItemClick(link, itemID, fallbackName, fallbackQuality
 
     -- If not cached yet, query cache once more in case it just arrived
     if itemID then
-        local _, cachedLink = FDJ.ItemInfo and FDJ.ItemInfo(itemID)
+        local _, cachedLink
+        if FDJ.ItemInfo then _, cachedLink = FDJ.ItemInfo(itemID) end
         if cachedLink and cachedLink ~= "" and cachedLink:find("|Hitem:") then
             RouteLink(cachedLink)
             return true
@@ -476,7 +478,7 @@ function FDJ.SetRowDungeonIcon(button, show, offsetX)
         icon.tex:SetAllPoints()
         local ok = icon.tex.SetAtlas and pcall(icon.tex.SetAtlas, icon.tex, "Dungeon", false)
         if not ok then
-            icon.tex:SetTexture("Interface\Icons\INV_Misc_Rune_01")
+            icon.tex:SetTexture("Interface\\Icons\\INV_Misc_Rune_01")
             icon.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
         end
         icon:SetScript("OnEnter", function(self)

@@ -88,7 +88,8 @@ local function PrettyKey(key)
 end
 
 local function RefreshBindingText()
-    local key1, key2 = GetBindingKey and GetBindingKey("FOREVERDUNGEONJOURNAL_TOGGLE")
+    local key1, key2
+    if GetBindingKey then key1, key2 = GetBindingKey("FOREVERDUNGEONJOURNAL_TOGGLE") end
     if key1 and key2 then
         currentKey:SetText("Current keybind: " .. PrettyKey(key1) .. " / " .. PrettyKey(key2))
     elseif key1 then
