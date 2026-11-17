@@ -404,3 +404,6 @@ Forever item/source cross-checks:
   Feed Satchel waypoint is the Meadowsbrook farm (same area as the Farmhands).
   Wowhead's series puts Spread the Word before Land of Giants; the player's
   walkthrough skips it, so it is not in the chain.
+- Sunnyglade cave (a player, 2026-11-16): the entrance is at (49, 46); the
+  Twilight Ritual Circles are inside, and Chogg'Zac (elite) is at the very back.
+  Sickening Lights and Twilight No More! now point at the entrance.

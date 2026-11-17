@@ -3469,19 +3469,21 @@ do
         pickup = AT_CLUBTOE, map = CLUBTOE,
         turnin = "Twilight Brute, in the caves beneath Sunnyglade, Riverglades (49.2, 46.8)",
         turninMap = Spot(0.492, 0.468, "Twilight Brute — caves beneath Sunnyglade, Riverglades", "Twilight Brute"),
-        note = "Done alongside Sickening Lights.",
+        note = "Done alongside Sickening Lights. The cave entrance is at (49.0, 46.0).",
     }
     D[95602] = {
         level = 40, requires = 36,
         objective = "Destroy 5 Twilight Ritual Circles found throughout the caves underneath Sunnyglade.",
         pickup = AT_CLUBTOE, turnin = AT_CLUBTOE, map = CLUBTOE, turninMap = CLUBTOE,
-        note = "Done alongside The Purple Ones.",
+        objectiveMap = Spot(0.490, 0.460, "Sunnyglade cave entrance — the Ritual Circles are throughout the caves"),
+        note = "Done alongside The Purple Ones. The cave entrance is at (49.0, 46.0); the circles are spread through the caves.",
     }
     D[95427] = {
         level = 41, requires = 36,
         objective = "Kill Chogg'Zac in the Sunnyglade cave and collect their heads for Clubtoe.",
         pickup = AT_CLUBTOE, turnin = AT_CLUBTOE, map = CLUBTOE, turninMap = CLUBTOE,
-        objectiveMap = Spot(0.450, 0.505, "Chogg'Zac — Sunnyglade cave, Riverglades", "Chogg'Zac"),
+        objectiveMap = Spot(0.490, 0.460, "Sunnyglade cave entrance — Chogg'Zac is at the very back of the cave", "Chogg'Zac"),
+        note = "Chogg'Zac (elite) is at the very back of the cave; the entrance is at (49.0, 46.0).",
     }
     D[95420] = {
         level = 40, requires = 36,
